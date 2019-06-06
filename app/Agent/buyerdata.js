@@ -1,6 +1,6 @@
 // add the mysql dependency
 var mysql = require('mysql')
-//add inquirer
+// add inquirer
 var inquirer = require('inquirer')
 // create the mysql connection configuration for the bamazon database
 var connection = mysql.createConnection({
@@ -19,7 +19,7 @@ connection.connect(function (err) {
   start()
 })
 // function which prompts the user for what action they should take
-function start() {
+function start () {
   inquirer
     .prompt({
       name: 'options',
@@ -30,34 +30,58 @@ function start() {
     .then(function (answer) {
       // based on their answer, run respective functions
       if (answer.options === 'Show All Clients') {
-        showClients();
+        showClients()
       } else if (answer.options === 'Show Clients By Purchase Price') {
-        selectPrice();
+        selectPrice()
       } else if (answer.options === 'Show Clients By Credit Score Range') {
-        selectCredit();
+        selectCredit()
       }
-
     })
 }
-//function to view table of products
-function showClients() {
+// function to view table of products
+function showClients () {
   connection.query('SELECT id,clientname,income,cashdown FROM clients', function (err, res) {
     if (err) throw err
     console.table(res)
     connection.end()
   })
 }
-//function to view stock quantity under than 5 units
-function selectPrice() {
-  var query = 'SELECT sku,product_name,stock_quantity FROM products WHERE stock_quantity < 5'
-  connection.query(query, function (err, res) {
-    if (err) throw err
-    console.table(res)
-    connection.end()
-  })
+// function to view stock quantity under than 5 units
+function selectCredit () {
+/// ///////////////////////////////////////////////////
+  inquirer
+    .prompt({
+      name: 'options',
+      type: 'list',
+      message: 'Select Credit Score Range',
+      choices: ['0-579', '580-619', '620-679', '680-739', '740-850']
+    })
+    .then(function (answer) {
+      // based on their answer, run respective functions
+      if (answer.options === '0-579') {
+
+      } else if (answer.options === '580-619') {
+
+      } else if (answer.options === '620-679') {
+
+      } else if (answer.options === '680-739') {
+
+      } else if (answer.options === '740-850') {
+
+      }
+    })
+
+  /// /////////////////////////////////////////////////////////
+
+//   var query = 'SELECT sku,product_name,stock_quantity FROM products WHERE stock_quantity < 5'
+//   connection.query(query, function (err, res) {
+//     if (err) throw err
+//     console.table(res)
+  // connection.end()
 }
-//function to replenish inventory
-function selectCredit() {
+
+// function to replenish inventory
+function selectPrice () {
   inquirer.prompt([
     {
       name: 'needSku',
@@ -81,40 +105,40 @@ function selectCredit() {
           showClients();
         })
     })
-    return
+    
   })
 }
-//function to add new product
-function addNew() {
+// function to add new product
+function addNew () {
   // Prompt the user to enter information about the new product
   inquirer.prompt([
     {
       type: 'input',
       name: 'product_name',
-      message: 'Please enter the name of the product you wish to add:',
+      message: 'Please enter the name of the product you wish to add:'
     },
     {
       type: 'input',
       name: 'department_name',
-      message: 'Which department does the new product belong to?',
+      message: 'Which department does the new product belong to?'
     },
     {
       type: 'input',
       name: 'price',
-      message: 'What is the price per item?',
+      message: 'What is the price per item?'
     },
     {
       type: 'input',
       name: 'stock_quantity',
-      message: 'How many items are being added?',
+      message: 'How many items are being added?'
     }
   ]).then(function (input) {
     // Add new product to bamazon database
     connection.query('INSERT INTO products SET ?', input, function (error, results, fields) {
-      if (error) throw error;
-      console.log('New product has been added under SKU # ' + results.insertId + '.');
+      if (error) throw error
+      console.log('New product has been added under SKU # ' + results.insertId + '.')
       //shows updated current items available
-      showClients();
-    });
+      showClients()
+    })
   })
 }
