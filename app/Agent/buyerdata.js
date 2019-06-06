@@ -40,7 +40,7 @@ function start () {
 }
 // function to view table of products
 function showClients () {
-  connection.query('SELECT id,clientname,income,cashdown FROM clients', function (err, res) {
+  connection.query('SELECT id,clientname,income,cashdown,creditgrade FROM clients', function (err, res) {
     if (err) throw err
     console.table(res)
     connection.end()
@@ -59,18 +59,57 @@ function selectCredit () {
     .then(function (answer) {
       // based on their answer, run respective functions
       if (answer.options === '0-579') {
-
+        fCredit()
       } else if (answer.options === '580-619') {
-
+        dCredit()
       } else if (answer.options === '620-679') {
-
+        cCredit()
       } else if (answer.options === '680-739') {
-
+        bCredit()
       } else if (answer.options === '740-850') {
-
+        aCredit()
       }
     })
 
+  function fCredit () {
+    connection.query('SELECT id,clientname,income,cashdown FROM clients WHERE creditgrade = "F"', function (err, res) {
+      if (err) throw err
+      console.table(res)
+      connection.end()
+    })
+  }
+
+  function dCredit () {
+    connection.query('SELECT id,clientname,income,cashdown FROM clients WHERE creditgrade = "D"', function (err, res) {
+      if (err) throw err
+      console.table(res)
+      connection.end()
+    })
+  }
+
+  function cCredit () {
+    connection.query('SELECT id,clientname,income,cashdown FROM clients WHERE creditgrade = "C"', function (err, res) {
+      if (err) throw err
+      console.table(res)
+      connection.end()
+    })
+  }
+
+  function bCredit () {
+    connection.query('SELECT id,clientname,income,cashdown FROM clients WHERE creditgrade = "B"', function (err, res) {
+      if (err) throw err
+      console.table(res)
+      connection.end()
+    })
+  }
+
+  function aCredit () {
+    connection.query('SELECT id,clientname,income,cashdown FROM clients WHERE creditgrade = "A"', function (err, res) {
+      if (err) throw err
+      console.table(res)
+      connection.end()
+    })
+  }
   /// /////////////////////////////////////////////////////////
 
 //   var query = 'SELECT sku,product_name,stock_quantity FROM products WHERE stock_quantity < 5'
@@ -91,21 +130,19 @@ function selectPrice () {
       message: 'How many units would you like to add?'
     }
   ]).then(function (answers) {
-
     connection.query('SELECT stock_quantity,product_name FROM products WHERE sku=?', answers.needSku, function (err, results) {
       if (err) { console.log(err) };
-      //add user input units to current stock quantity
-      var replenish = parseInt(results[0].stock_quantity) + parseInt(answers.quantity);
-      var pName = results[0].product_name;
-      //updates stock quantity of product matching sku number
+      // add user input units to current stock quantity
+      var replenish = parseInt(results[0].stock_quantity) + parseInt(answers.quantity)
+      var pName = results[0].product_name
+      // updates stock quantity of product matching sku number
       connection.query('UPDATE products SET stock_quantity=? WHERE sku=?', [replenish, answers.needSku],
         function (err, results) {
           if (err) { console.log(err) };
-          console.log(answers.quantity + " items added to " + pName)
-          showClients();
+          console.log(answers.quantity + ' items added to ' + pName)
+          showClients()
         })
     })
-    
   })
 }
 // function to add new product
@@ -137,7 +174,7 @@ function addNew () {
     connection.query('INSERT INTO products SET ?', input, function (error, results, fields) {
       if (error) throw error
       console.log('New product has been added under SKU # ' + results.insertId + '.')
-      //shows updated current items available
+      // shows updated current items available
       showClients()
     })
   })
