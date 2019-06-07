@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.mlcalc.com/widget-api.js"></script>
+
+</head>
+<body>
+    <h1>Mortgage Calculator</h1>
+
+    <br>
+    <form action="https://www.mlcalc.com/" method="post" onsubmit="return mlcalcCalculate(this)">
+        <input type="hidden" name="wl" value="en">
+        <label>Purchase price: <input type="text" name="ma" value="250,000"> $</label><br>
+        <label>Down payment: <input type="text" name="dp" value="10"> %</label><br>
+        <label>Mortgage term: <input type="text" name="mt" value="30"> years</label><br>
+        <label>Interest rate: <input type="text" name="ir" value="5.5"> %</label><br>
+        <label>First payment date (month): <input type="text" name="sm" value="3"></label><br>
+        <label>First payment date (year): <input type="text" name="sy" value="2010"></label><br>
+        <label>Amortization:
+           <label><input type="radio" name="as" value="year" checked="checked"> show by year</label>
+           <label><input type="radio" name="as" value="month"> show by month</label>
+           <label><input type="radio" name="as" value="none"> don't show</label>
+        </label><br><br>
+        <input type="submit" value="Calculate"><br><br>
+        </form>
+        
+        <br><br>
+        
+
+        
+</body>
+</html>
