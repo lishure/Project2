@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mortgage Calculator: Edit Entry</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+  <style>
+    #matchedProperty {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 50%;
+    }
+    .overlay.active {
+      background-color: rgba(0, 0, 0, .25);
+      content: "";
+      height: 100vh;
+      left: 0;
+      top: 0;
+      width: 100vw;
+    }
+  </style>
+</head>
+
+<body class="sans-serif">
+  <div class="ma4">
+    <h1 class="f3 f1-l fw2 mb3 mt4 mt0-ns lh-title">Mortgage Calculator: Update</h1>
+    <form class="mb4">
+      <h2 class="lh-title">About You</h2>
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+        <legend class="b bw0 f6 pa0 ma0">ID</legend>
+        <input type="text" id="entryID" name="entryID" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+          value="4">
+      </fieldset>
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+        <legend class="b bw0 f6 pa0 ma0">Name</legend>
+        <input type="text" id="firstName" name="firstName" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+          value="Oliver Grant">
+      </fieldset>
+      <h2 class="lh-title">Questions</h2>
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+        <legend class="b bw0 f6 pa0 ma0">Credit Score</legend>
+        <select name="creditScore" id="creditScore" class="input-reset ba b--black-20 br2 ph2 pv1 w-100">
+          <option disabled="disabled">Please Select One</option>
+          <option value="Very Poor" data-credit-score-minimum="300" data-credit-score-max="579">Very Poor (300-579)
+          </option>
+          <option value="Fair" data-credit-score-minimum="580" data-credit-score-max="669">Fair (580-669)</option>
+          <option value="Good" data-credit-score-minimum="670" data-credit-score-max="739">Good (670-739)</option>
+          <option value="Very Good" data-credit-score-minimum="740" data-credit-score-max="799" selected="true">Very Good (740-799)
+          </option>
+          <option value="Exceptional" data-credit-score-minimum="800" data-credit-score-max="850">Exceptional (800-850)
+          </option>
+        </select>
+      </fieldset>
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+        <legend class="b bw0 f6 pa0 ma0">Income</legend>
+        <input type="text" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+          value="---">
+      </fieldset>
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+        <legend class="b bw0 f6 pa0 ma0">Down Payment</legend>
+        <input type="text" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+          value="---">
+      </fieldset>
+
+      <button class="f6 link br-pill ba bw2 ph3 pv2 mb2 dib b--black bg-transparent black pointer w-100" type="button"
+        data-toggle="modal" data-target="#matchedFriend">Update</button>
+    </form>
+
+    <div id="matchedProperty" class="card modal dn absolute z-5 mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10"
+      role="dialog" aria-hidden="true">
+      <h3 class="tc">
+        Based on your input, here are the results:
+      </h3>
+      <div class="card-body tc"></div>
+    </div>
+    <div class="overlay fixed z-1"></div>
+
+    <div class="tc">
+      <!-- Change the API link accordingly -->
+      <a href="/api/entries" class="blue link">API Entries</a> | <a href="https://github.com/lishure/Project2"
+        class="blue link">GitHub Repo</a>
+    </div>
+
+    <script>
+      
+      const form = document.querySelector('form')
+      const modal = document.querySelector('#matchedFriend')
+      const modalContent = document.querySelector('.card-body')
+      const overlay = document.querySelector('.overlay')
+
+      /*
+        
+        // activate modal
+        modal.classList.remove('dn')
+        
+        // activate overlay
+        overlay.classList.add('active')
+
+        // when overlay is clicked, reload the page
+        overlay.addEventListener('click', event => {
+          event.preventDefault();
+          location.reload()
+        })
+
+      */
+
+    </script>
+</body>
+
+</html>
