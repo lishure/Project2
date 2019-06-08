@@ -6,7 +6,7 @@ exports.up = function (knex, Promise) {
     table.int('income').notNullable()
     table.int('cashdown')
     table.int('budget')
-    table.string('credit_score').notNullable()
+    table.string('creditgrade').notNullable()
     table.timestamp('created_at').defaultTo(knex.fn.now())
     table.timestamp('updated_at').defaultTo(knex.fn.now())
   })
