@@ -4,6 +4,7 @@
   "description": "Project 2",
   "main": "server.js",
   "scripts": {
+    "startdev": "node server.js",
     "start": "nodemon server.js",
     "lint": "standard --verbose | snazzy",
     "fix": "standard --fix .",
