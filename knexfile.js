@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
 
   development: {
@@ -9,6 +11,12 @@ module.exports = {
       password: '',
       database: 'buyersdb',
       debug: ['ComQueryPacket', 'RowDataPacket']
+    },
+    migrations: {
+      directory: path.join(__dirname, '/knex/migrations')
+    },
+    seeds: {
+      directory: path.join(__dirname, '/knex/seeds')
     }
   },
 
