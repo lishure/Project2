@@ -7,7 +7,9 @@ require('dotenv').config()
 const express = require('express')
 const exphbs = require('express-handlebars')
 
-const db = require('./models/example') // eslint-disable no-unused-consts
+/* eslint-disable no-unused-vars */
+const db = require('./models/example')
+/* eslint-enable no-unused-vars */
 
 const app = express()
 const PORT = process.env.PORT || 3000

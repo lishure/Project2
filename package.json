@@ -24,5 +24,8 @@
     "cross-env": "^5.2.0",
     "mocha": "^6.1.4",
     "standard": "^12.0.1"
+  },
+  "standard": {
+    "env": [ "mocha" ]
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Get references to page elements
 var exampleText = document.querySelector('#example-text')
 var exampleDescription = document.querySelector('#example-description')
@@ -102,3 +103,4 @@ var handleDeleteBtnClick = function (event) {
 // Add event listeners to the submit and delete buttons
 submitBtn.addEventListener('click', handleFormSubmit)
 exampleList.addEventListener('click', handleDeleteBtnClick)
+/* eslint-enable no-undef */
