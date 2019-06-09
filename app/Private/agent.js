@@ -53,11 +53,11 @@ function selectCredit () {
       name: 'options',
       type: 'list',
       message: 'Select Credit Score Range',
-      choices: ['0-579', '580-619', '620-679', '680-739', '740-850']
+      choices: ['300-579', '580-619', '620-679', '680-739', '740-850']
     })
     .then(function (answer) {
       // based on their answer, run respective functions
-      if (answer.options === '0-579') {
+      if (answer.options === '300-579') {
         fCredit()
       } else if (answer.options === '580-619') {
         dCredit()

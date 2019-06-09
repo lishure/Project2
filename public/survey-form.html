@@ -7,6 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mortgage Calculator: Form</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
   <style>
     #matchedProperty {
       left: 50%;
@@ -60,7 +63,7 @@
           required>
       </fieldset>
 
-      <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100" type="button"
+      <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100" id="submit-button" type="button"
         data-toggle="modal" data-target="#matchedFriend">Submit</button>
     </form>
 
@@ -86,6 +89,7 @@
       const modalContent = document.querySelector('.card-body')
       const overlay = document.querySelector('.overlay')
 
+
       /*
         
         // activate modal
@@ -102,7 +106,10 @@
 
       */
 
+      
+
     </script>
+      <script src="survey-form.js"></script>
 </body>
 
 </html>
