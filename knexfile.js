@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path')
 
 module.exports = {
@@ -5,11 +6,11 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host: 'localhost',
-      port: 3306,
-      user: 'nodeuser',
-      password: '',
-      database: 'buyersdb',
+      user: process.env.dbUser,
+      password: process.env.dbPassword,
+      host: process.env.dbServer,
+      port: process.env.dbPort,
+      database: process.env.db,
       debug: ['ComQueryPacket', 'RowDataPacket']
     },
     migrations: {
@@ -23,11 +24,11 @@ module.exports = {
   staging: {
     client: 'mysql',
     connection: {
-      host: 'localhost',
-      port: 3306,
-      user: 'nodeuser',
-      password: '',
-      database: 'buyersdb',
+      user: process.env.dbUser,
+      password: process.env.dbPassword,
+      host: process.env.dbServer,
+      port: process.env.dbPort,
+      database: process.env.db,
       debug: ['ComQueryPacket', 'RowDataPacket']
     }
   },
@@ -35,11 +36,11 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
+      user: '',
+      password: '',
       host: process.env.DATABASE_URL,
       port: 3306,
-      user: 'nodeuser',
-      password: '',
-      database: 'buyersdb'
+      database: process.env.db
     }
   }
 }

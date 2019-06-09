@@ -1,11 +1,11 @@
 
 exports.up = function (knex, Promise) {
-  return knex.schema.createTable('buyersdb', function (table) {
+  return knex.schema.createTable('buyers', function (table) {
     table.increments('id')
     table.string('clientname').notNullable()
-    table.int('income').notNullable()
-    table.int('cashdown')
-    table.int('budget')
+    table.integer('income').notNullable()
+    table.integer('cashdown')
+    table.integer('budget')
     table.string('creditgrade').notNullable()
     table.timestamp('created_at').defaultTo(knex.fn.now())
     table.timestamp('updated_at').defaultTo(knex.fn.now())
@@ -13,5 +13,5 @@ exports.up = function (knex, Promise) {
 }
 
 exports.down = function (knex, Promise) {
-  return knex.schema.dropTable('buyersdb')
+  return knex.schema.dropTable('buyers')
 }
