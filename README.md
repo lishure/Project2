@@ -8,5 +8,14 @@ It will have CRUD (Create, Read, Update, Delete) capabilities; the end user to c
 - John
 - Lisa 
 
-## APIs
-- Zillow [https://mortgageapi.zillow.com/api/getRates]
+## Notable npm packages
+
+- chai
+- dotenv
+- express
+- express-handlebars
+- knex
+- mocha
+- mysql
+- snazzy
+- standard
