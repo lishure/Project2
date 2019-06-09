@@ -38,7 +38,7 @@
           required>
       </fieldset>
       <h2 class="lh-title">Questions</h2>
-      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100" required>
         <legend class="b bw0 f6 pa0 ma0">Credit Score</legend>
         <select name="creditScore" id="creditScore" class="input-reset ba b--black-20 br2 ph2 pv1 w-100">
           <option disabled="disabled" selected="true">Please Select One</option>
@@ -53,13 +53,18 @@
         </select>
       </fieldset>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">Income</legend>
-        <input type="text" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+        <legend class="b bw0 f6 pa0 ma0">Monthly Income</legend>
+        <input type="number" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
           required>
       </fieldset>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
         <legend class="b bw0 f6 pa0 ma0">Down Payment</legend>
-        <input type="text" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+        <input type="number" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+          required>
+      </fieldset>
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+        <legend class="b bw0 f6 pa0 ma0">Today's Interest Rate % (Based on 30-Year Term)</legend>
+        <input type="number" id="interestRate" name="interestRate" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
           required>
       </fieldset>
 

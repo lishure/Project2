@@ -6,7 +6,7 @@ document.querySelector('#submit-button').addEventListener('click', function (eve
   var creditRating = document.querySelector('#creditScore').value.trim()
   var monthlyIncome = document.querySelector('#incomeLevel').value.trim()
   var moneyDown = document.querySelector('#downPayment').value.trim()
-
+  var todaysRate = document.querySelector('#interestRate').value.trim()
   // Holds user data
   var userData = {
     name: nameInput,
@@ -15,40 +15,20 @@ document.querySelector('#submit-button').addEventListener('click', function (eve
     cash: moneyDown
   }
   // Logs everything to console
-  console.log(userData.name)
-  console.log(userData.credit)
-  console.log(userData.income)
-  console.log(userData.cash)
+  console.log('Your Name: ' + userData.name)
+  console.log('Your Credit Rating: ' + userData.credit)
+  console.log('Your Monthly Income: $' + userData.income)
+  console.log('Down Payment Amount: $ ' + userData.cash)
+
+  // Variables to store mortgage calculator equation
+  var decimalRate = todaysRate / 100
+  var loanTermRate = 30 * decimalRate
+  var effectiveRate = loanTermRate + 0.50
+  var loanAmount = [monthlyIncome * 129.6] / [effectiveRate]
+  var budget = loanAmount + parseInt(moneyDown)
+  var monthlyPayment = monthlyIncome * 0.36
+
+  // Console log monthly max payment and total max budget
+  console.log('Your max monthly payment is: $' + monthlyPayment + '.')
+  console.log('Your max budget is: $' + parseInt(budget) + '.')
 })
-
-// submitButton.addEventListener("click", getNewContainer);
-
-// function getNewContainer() {
-
-// $('#submit').on('click', function () {
-//     console.log("this button works")
-//   function validateForm () {
-//     var isValid = true
-//     // form control to make sure all questions are answered
-//     $('.input-reset ba b--black-20 br2 ph2 pv1 w-100').each(function () {
-//       if ($(this).val() === '') isValid = false
-//     })
-//     return isValid
-//   }
-//   // if form is validated, all questions answered, store userData in variable
-//   if (validateForm() === true) {
-//     var userData = {
-//       name: $('#firstName').val(),
-//       creditscore: $('#creditScore').val(),
-//       income: $('#incomeLevel').val(),
-//       moneyDown: $('#downPayment').val()
-//     }
-//     console.log(userData)
-//     // Enter Code to Post user answers to seed file for modal
-//     // Enter code here
-//     /// ///////
-//   } else {
-//     // alert if questions were not answered
-//     alert('Please fill out all fields before submitting!')
-//   }
-//   return false
