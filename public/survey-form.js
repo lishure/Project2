@@ -31,4 +31,13 @@ document.querySelector('#submit-button').addEventListener('click', function (eve
   // Console log monthly max payment and total max budget
   console.log('Your max monthly payment is: $' + monthlyPayment + '.')
   console.log('Your max budget is: $' + parseInt(budget) + '.')
+
+  // Displays results in HTML
+  var resultsPage = document.querySelector('.jumbotron-special')
+  resultsPage.classList.remove('invisible')
+  document.querySelector('#first-name').innerText = nameInput
+  document.querySelector('#max-budget').innerText = parseInt(budget)
+  document.querySelector('#max-monthly').innerText = monthlyPayment
+
+  window.scrollTo(0, document.body.scrollHeight)
 })
