@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 // Get references to page elements
-var exampleText = document.querySelector('#example-text')
-var exampleDescription = document.querySelector('#example-description')
-var submitBtn = document.querySelector('#submit')
-var exampleList = document.querySelector('#example-list')
+const exampleText = document.querySelector('#example-text')
+const exampleDescription = document.querySelector('#example-description')
+const submitBtn = document.querySelector('#submit')
+const exampleList = document.querySelector('#example-list')
 
 // The API object contains methods for each kind of request we'll make
 class API {
@@ -31,7 +31,7 @@ class API {
 }
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function () {
+const refreshExamples = function () {
   let api = new API()
 
   api.getExamples()
@@ -42,16 +42,16 @@ var refreshExamples = function () {
       }
 
       for (let example of data) {
-        var aElem = document.createElement('a')
+        const aElem = document.createElement('a')
         aElem.textContent = example.text
         aElem.setAttribute('href', '/example/' + example.id)
 
-        var liElem = document.createElement('li')
+        const liElem = document.createElement('li')
         liElem.classList.add('list-group-item')
         liElem.dataset.id = example.id
         liElem.appendChild(aElem)
 
-        var buttonElem = document.createElement('button')
+        const buttonElem = document.createElement('button')
         buttonElem.classList.add('btn', 'btn-danger', 'float-right', 'delete')
         buttonElem.textContent = 'ｘ'
 
@@ -64,11 +64,11 @@ var refreshExamples = function () {
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
-var handleFormSubmit = function (event) {
+const handleFormSubmit = function (event) {
   event.preventDefault()
   let api = new API()
 
-  var example = {
+  const example = {
     text: exampleText.value.trim(),
     description: exampleDescription.value.trim()
   }
@@ -88,11 +88,11 @@ var handleFormSubmit = function (event) {
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function (event) {
+const handleDeleteBtnClick = function (event) {
   if (event.target.matches('button.delete')) {
     let api = new API()
 
-    var idToDelete = event.target.parentElement.dataset.id
+    const idToDelete = event.target.parentElement.dataset.id
 
     api.deleteExample(idToDelete).then(function () {
       refreshExamples()
