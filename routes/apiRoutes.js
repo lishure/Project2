@@ -1,5 +1,5 @@
 // Dependencies
-const Example = require('../models/example')
+const Buyers = require('../models/buyers')
 
 /**
  * apiRoutes: This routes file returns data to the client/view
@@ -9,27 +9,27 @@ const Example = require('../models/example')
  */
 
 module.exports = function (app) {
-  // Get all examples
-  app.get('/api/examples', function (req, res) {
-    Example.findAll()
-      .then(function (dbExamples) {
-        res.json(dbExamples)
+  // Get all buyers
+  app.get('/api/buyers', (req, res) => {
+    Buyers.findAll()
+      .then(buyers => {
+        res.json(buyers)
       })
   })
 
   // Create a new example
-  app.post('/api/examples', function (req, res) {
-    Example.create(req.body)
-      .then(function (dbExample) {
-        res.json(dbExample)
+  app.post('/api/buyers', (req, res) => {
+    Buyers.create(req.body)
+      .then(buyers => {
+        res.json(buyers)
       })
   })
 
   // Delete an example by id
-  app.delete('/api/examples/:id', function (req, res) {
-    Example.destroy(req.params)
-      .then(function (dbExample) {
-        res.json(dbExample)
+  app.delete('/api/buyers/:id', (req, res) => {
+    Buyers.destroy(req.params)
+      .then(buyers => {
+        res.json(buyers)
       })
   })
 }

@@ -26,8 +26,9 @@
               <th class="fw6 tl pa3 bg-white tc">Action</th>
             </tr>
           </thead>
-          <tbody class="lh-copy">
-            <tr class="stripe-dark">
+          <tbody id="allEntries" class="lh-copy">
+
+            <!-- <tr class="stripe-dark">
               <td class="pa3">1</td>
               <td class="pa3">Hassan Johnson</td>
               <td class="pa3 tc">---</td>
@@ -81,7 +82,7 @@
                 <a href="#" class="f6 link dim br-pill ph3 pv1 dib white bg-blue mr2">Edit</a>
                 <a href="#" class="f6 link dim br-pill ph3 pv1 dib white bg-dark-red">Delete</a>
               </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
@@ -89,9 +90,13 @@
 
     <div class="tc">
       <!-- Change the API link accordingly -->
-      <a href="/api/entries" class="blue link">API Entries</a> | <a href="https://github.com/lishure/Project2"
+      <a href="/api/buyers" class="blue link">List of Buyers (API)</a> | <a href="https://github.com/lishure/Project2"
         class="blue link">GitHub Repo</a>
     </div>
+
+    <script>
+      fetch('/api/')
+    </script>
 
 </body>
 
