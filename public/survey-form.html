@@ -7,12 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mortgage Calculator: Survey</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
   <style>
     #matchedProperty {
       left: 50%;
       transform: translate(-50%, -50%);
       top: 50%;
     }
+
     .overlay.active {
       background-color: rgba(0, 0, 0, .25);
       content: "";
@@ -20,6 +24,17 @@
       left: 0;
       top: 0;
       width: 100vw;
+    }
+
+    .button {
+      background-color:green;
+      border: none;
+      color: white;
+      padding: 5px 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -29,12 +44,12 @@
     <form class="mb4">
       <h2 class="lh-title">About You</h2>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">Name</legend>
+        <legend class="b bw0 f6 pa0 ma0">Full Name</legend>
         <input type="text" id="firstName" name="firstName" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
           required>
       </fieldset>
       <h2 class="lh-title">Questions</h2>
-      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100" required>
         <legend class="b bw0 f6 pa0 ma0">Credit Score</legend>
         <select name="creditScore" id="creditScore" class="input-reset ba b--black-20 br2 ph2 pv1 w-100">
           <option disabled="disabled" selected="true">Please Select One</option>
@@ -49,20 +64,53 @@
         </select>
       </fieldset>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">Income</legend>
-        <input type="text" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+        <legend class="b bw0 f6 pa0 ma0">Monthly Income</legend>
+        <input type="number" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
           required>
       </fieldset>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
         <legend class="b bw0 f6 pa0 ma0">Down Payment</legend>
-        <input type="text" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+        <input type="number" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+          required>
+      </fieldset>
+      <!--added interest rate fieldset and today's rate button-->
+      <a type="button" href="https:www.bankrate.com/mortgages/30-year-mortgage-rates" value="facebook" target="_blank"
+        class="button">
+        <h6>Get Today's Rate</h6>
+      </a>
+      <br>
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-30">
+        <legend class="b bw0 f6 pa0 ma0">Today's Interest Rate % (Based on 30-Year Term)</legend>
+        <input type="number" id="interestRate" name="interestRate" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
           required>
       </fieldset>
 
-      <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100" type="button"
-        data-toggle="modal" data-target="#matchedFriend">Submit</button>
-    </form>
+      <div class="tc">
+        <!-- Change the API link accordingly -->
+        <a href="/api/entries" class="blue link">API Entries</a> | <a href="https://github.com/lishure/Project2"
+          class="blue link">GitHub Repo</a>
+      </div>
 
+
+      <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100"
+        id="submit-button" type="button" data-toggle="modal" data-target="#matchedFriend">Submit</button>
+    </form>
+    <!--Added Jumbotron to toggle results-->
+    <div class="jumbotron jumbotron-special invisible">
+      <div id="results-page">
+        <h2>Congratulations <span id="first-name"></span>!</h2>
+        <img
+          src='https://media.istockphoto.com/photos/home-exterior-picture-id453944565?k=6&m=453944565&s=612x612&w=0&h=rnccdZr2CD57ipbB3igpOEzVPrPfu5IPT_wFZ2VmwG8='
+          alt="Image" height="300px" width="400px">
+        <br>
+        <p>Your Max Budget is : *$<span id="max-budget">0</span></p>
+        <p>Your Max Monthly payment is : *$<span id="max-monthly">0</span></p>
+        <p>*These results are an estimation based on your input and gives you an idea of what you can afford and in no
+          way a guarantee of what you can truly afford.
+          If you would like to move forward, the next step would be to speak with a Lender for a pre-approval.
+      </div>
+    </div>
+    <!--End of Jumbotron-->
     <div id="matchedProperty" class="card modal dn absolute z-5 mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10"
       role="dialog" aria-hidden="true">
       <h3 class="tc">
@@ -71,7 +119,6 @@
       <div class="card-body tc"></div>
     </div>
     <div class="overlay fixed z-1"></div>
-
     <div class="tc">
       <!-- Change the API link accordingly -->
       <a href="/api/buyers" class="blue link">List of Buyers (API)</a> | <a href="https://github.com/lishure/Project2"
@@ -79,17 +126,18 @@
     </div>
 
     <script>
-      
+
       const form = document.querySelector('form')
       const modal = document.querySelector('#matchedFriend')
       const modalContent = document.querySelector('.card-body')
       const overlay = document.querySelector('.overlay')
 
+
       /*
-        
+
         // activate modal
         modal.classList.remove('dn')
-        
+
         // activate overlay
         overlay.classList.add('active')
 
@@ -101,7 +149,12 @@
 
       */
 
+
+
+
+
     </script>
+    <script src="survey-form.js"></script>
 </body>
 
 </html>
