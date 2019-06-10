@@ -1,24 +1,17 @@
 
 // On click function to capture user data
 document.querySelector('#submit-button').addEventListener('click', function (event) {
-// Grabs user input
+  // Grabs user input
   var nameInput = document.querySelector('#firstName').value.trim()
   var creditRating = document.querySelector('#creditScore').value.trim()
   var monthlyIncome = document.querySelector('#incomeLevel').value.trim()
   var moneyDown = document.querySelector('#downPayment').value.trim()
   var todaysRate = document.querySelector('#interestRate').value.trim()
-  // Holds user data
-  var userData = {
-    name: nameInput,
-    credit: creditRating,
-    income: monthlyIncome,
-    cash: moneyDown
-  }
   // Logs everything to console
-  console.log('Your Name: ' + userData.name)
-  console.log('Your Credit Rating: ' + userData.credit)
-  console.log('Your Monthly Income: $' + userData.income)
-  console.log('Down Payment Amount: $ ' + userData.cash)
+  // console.log('Your Name: ' + userData.clientname)
+  // console.log('Your Credit Rating: ' + userData.creditgrade)
+  // console.log('Your Monthly Income: $' + userData.income)
+  // console.log('Down Payment Amount: $ ' + userData.cashdown)
 
   // Variables to store mortgage calculator equation
   var decimalRate = todaysRate / 100
@@ -40,4 +33,20 @@ document.querySelector('#submit-button').addEventListener('click', function (eve
   document.querySelector('#max-monthly').innerText = monthlyPayment
 
   window.scrollTo(0, document.body.scrollHeight)
+  // Holds user data
+  var userData = {
+    clientname: nameInput,
+    creditgrade: creditRating,
+    income: monthlyIncome,
+    cashdown: moneyDown,
+    budget: budget
+  }
+  // Ajax call
+  $.ajax({
+    url: '/api/buyers',
+    method: 'POST',
+    data: userData
+  }).then(function (res) {
+    console.log(res)
+  })
 })
