@@ -37,6 +37,23 @@
     </div>
 
     <script>
+
+      const formatMoney = (amount, decimalCount = 2, decimal = '.', thousands = ',') => {
+        try {
+          decimalCount = Math.abs(decimalCount)
+          decimalCount = isNaN(decimalCount) ? 2 : decimalCount
+
+          const negativeSign = amount < 0 ? '-' : ''
+
+          let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString()
+          let j = (i.length > 3) ? i.length % 3 : 0
+
+          return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : '')
+        } catch (e) {
+          console.log(e)
+        }
+      }
+
       fetch('/api/buyers')
         .then(response => {
           return response.json()
@@ -55,9 +72,9 @@
             <tr class="stripe-dark">
               <td class="pa3">${id}</td>
               <td class="pa3">${clientName}</td>
-              <td class="pa3 tc">${income}</td>
-              <td class="pa3 tc">${cashdown}</td>
-              <td class="pa3 tc">${budget}</td>
+              <td class="pa3 tc">$${formatMoney(income)}</td>
+              <td class="pa3 tc">$${formatMoney(cashdown)}</td>
+              <td class="pa3 tc">$${formatMoney(budget)}</td>
               <td class="pa3 tc">${creditGrade}</td>
               <td class="pa3 tc">
                 <a href="/edit/id:${id}" class="f6 link dim br-pill ph3 pv1 dib white bg-blue mr2">Edit</a>
