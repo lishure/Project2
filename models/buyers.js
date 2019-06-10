@@ -1,9 +1,7 @@
 const knex = require('../config/connection.js')
 
 /**
- * Queries the Example database
- *
- * @class Example
+ * @class Buyers
  */
 class Buyers {
   constructor (table = process.env.dbTable) {
@@ -11,7 +9,6 @@ class Buyers {
   }
 
   /**
-   *
    * Find all buyers in the table
    * @returns Promise
    * @memberof Buyer
@@ -22,12 +19,11 @@ class Buyers {
   }
 
   /**
- * create a new record
- *
- * @param {Object} values The values to insert in the form of {column: value}
- * @returns Promise
- * @memberof Example
- */
+   * Create a new record
+   * @param {Object} values The values to insert in the form of {column: value}
+   * @returns Promise
+   * @memberof Example
+   */
   create (values) {
     return knex(this.table)
       .returning('id')
@@ -35,8 +31,7 @@ class Buyers {
   }
 
   /**
-   * delete 1 or more records by criteria
-   *
+   * Delete one or more records by criteria
    * @param {Object} where The where clause in the form of {column: value}
    * @returns Promise
    * @memberof Example
