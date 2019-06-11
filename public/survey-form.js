@@ -14,30 +14,36 @@ document.querySelector('#submit-button').addEventListener('click', function (eve
     income: monthlyIncome,
     cash: moneyDown
   }
-  // Logs everything to console
-  console.log('Your Name: ' + userData.name)
-  console.log('Your Credit Rating: ' + userData.credit)
-  console.log('Your Monthly Income: $' + userData.income)
-  console.log('Down Payment Amount: $ ' + userData.cash)
 
-  // Variables to store mortgage calculator equation
-  var decimalRate = todaysRate / 100
-  var loanTermRate = 30 * decimalRate
-  var effectiveRate = loanTermRate + 0.50
-  var loanAmount = [monthlyIncome * 129.6] / [effectiveRate]
-  var budget = loanAmount + parseInt(moneyDown)
-  var monthlyPayment = monthlyIncome * 0.36
+  if (nameInput === '' || monthlyIncome === '' || moneyDown === '' || todaysRate === '') {
+    var userValidation = document.querySelector('#container1')
+    userValidation.classList.remove('invisible')
+  } else {
+    // Logs everything to console
+    console.log('Your Name: ' + userData.name)
+    console.log('Your Credit Rating: ' + userData.credit)
+    console.log('Your Monthly Income: $' + userData.income)
+    console.log('Down Payment Amount: $ ' + userData.cash)
 
-  // Console log monthly max payment and total max budget
-  console.log('Your max monthly payment is: $' + monthlyPayment + '.')
-  console.log('Your max budget is: $' + parseInt(budget) + '.')
+    // Variables to store mortgage calculator equation
+    var decimalRate = todaysRate / 100
+    var loanTermRate = 30 * decimalRate
+    var effectiveRate = loanTermRate + 0.50
+    var loanAmount = [monthlyIncome * 129.6] / [effectiveRate]
+    var budget = loanAmount + parseInt(moneyDown)
+    var monthlyPayment = monthlyIncome * 0.36
 
-  // Displays results in HTML
-  var resultsPage = document.querySelector('.jumbotron-special')
-  resultsPage.classList.remove('invisible')
-  document.querySelector('#first-name').innerText = nameInput
-  document.querySelector('#max-budget').innerText = parseInt(budget)
-  document.querySelector('#max-monthly').innerText = monthlyPayment
+    // Console log monthly max payment and total max budget
+    console.log('Your max monthly payment is: $' + monthlyPayment + '.')
+    console.log('Your max budget is: $' + parseInt(budget) + '.')
 
-  window.scrollTo(0, document.body.scrollHeight)
+    // Displays results in HTML
+    var resultsPage = document.querySelector('.jumbotron-special')
+    resultsPage.classList.remove('invisible')
+    document.querySelector('#first-name').innerText = nameInput
+    document.querySelector('#max-budget').innerText = parseInt(budget)
+    document.querySelector('#max-monthly').innerText = monthlyPayment
+
+    window.scrollTo(0, document.body.scrollHeight)
+  }
 })
