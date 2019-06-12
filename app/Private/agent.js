@@ -121,7 +121,6 @@ function selectPrice () {
     connection.query('SELECT * FROM clients WHERE budget <=?', answers.maxbudget, function (err, results) {
       if (err) throw err
       console.table(results)
-      /// Code is not finished yet
       connection.end()
     })
   })
