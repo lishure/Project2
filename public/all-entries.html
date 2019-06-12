@@ -7,10 +7,36 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mortgage Calculator: Buyers</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 </head>
 
 <body class="sans-serif">
-  <div class="ma4">
+
+
+    <div class="login-form col-md-4" id="login-form">
+        <form>
+            <h2 style="color:blueviolet">Login</h2>
+            <input type="text" name="username" placeholder="Username" id="username">
+            <br><br>
+            <input type="password" name="password" placeholder="Password" id="password">
+            <br><br>
+            <button class="BT-OH-BR-R6-NF-FH-FP-TU-PT" type="button" id="login"><hover></hover>Log in</button>
+            <br><br>
+            <div class= "invalid invisible" id="invalid" style="color:red"><p>Incorrect Username and/or Password combination. Please try again.</p></div>  
+            <br>
+        </form>
+    </div>
+
+  <div class="ma4 invisible" id="page">
     <div class="pa4">
       <div class="overflow-auto">
         <table class="f6 w-100 mw8 center" cellspacing="0">
@@ -35,6 +61,40 @@
       <a href="/api/buyers" class="blue link">List of Buyers (API)</a> | <a href="https://github.com/lishure/Project2"
         class="blue link">GitHub Repo</a>
     </div>
+</div>
+
+<style>
+body{
+        background: url("http://eomcreative.com/hsm2/wp-content/uploads/2014/01/slider4.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    }
+    .login-form{
+        background: rgb(235, 219, 229);
+        text-align: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: .92;
+        float: left;
+    }
+    [class*="BT"]{width:200px;display:block;position:absolute;padding:0;color:white;border-color:#0e0e0e;margin:0 0 10px;line-height:6px;border-style:solid;left:55%;top:150px;margin-left:-125px;height:40px;}
+    [class*="BT"] hover{position:absolute;z-index:5;width:246px;margin-left:-370px;  transition: all 0.3s ease-out 0s;    background: -moz-linear-gradient(45deg,  rgba(255,255,255,0) 0%, rgba(135,135,135,0.38) 50%, rgba(255,255,255,0) 100%); /* FF3.6+ */background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(50%,rgba(135,135,135,0.38)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */background: -webkit-linear-gradient(45deg,  rgba(255,255,255,0) 0%,rgba(135,135,135,0.38) 50%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */background: -o-linear-gradient(45deg,  rgba(255,255,255,0) 0%,rgba(135,135,135,0.38) 50%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */background: -ms-linear-gradient(45deg,  rgba(255,255,255,0) 0%,rgba(135,135,135,0.38) 50%,rgba(255,255,255,0) 100%); /* IE10+ */background: linear-gradient(45deg,  rgba(255,255,255,0) 0%,rgba(135,135,135,0.38) 50%,rgba(255,255,255,0) 100%); /* W3C */filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */  height:60px;margin-top:-30px;}
+    [class*="OH"]{overflow:hidden;}
+    [class*="BR"]{border-width:2px;}
+    [class*="R6"]{border-radius:6px;}
+    [class*="NF"]{background:rgb(1, 46, 105);}
+    [class*="BT"]:hover hover{  margin-left:123px;}
+    [class*="TU"]{text-transform:uppercase;}
+    [class*="PT"]{cursor:pointer;}
+    [class*="BT"] span{  position:absolute;  width:200px;  margin-left:-100px;  z-index:3;} canvas{margin: 0;padding: 0;display:block;position:absolute;margin-top:-30px;}
+#allEntries{
+  background-color: white
+}
+</style>
 
     <script>
 
@@ -86,6 +146,23 @@
             target.innerHTML += template
           }
         })
+// Button click function for login
+        document.querySelector('#login').addEventListener('click', function () {
+
+let username = document.querySelector('#username').value.trim()
+let password = document.querySelector('#password').value.trim()
+//Validate username and password
+
+    if(username == 'username' && password === 'password') {
+        var showPage = document.querySelector('#page')
+        var login = document.querySelector('#login-form')
+        showPage.classList.remove('invisible')
+        login.classList.add('invisible')
+    } else {
+        var loginValidation = document.querySelector('#invalid')
+        loginValidation.classList.remove('invisible')
+    }
+})
     </script>
 
 </body>
