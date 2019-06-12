@@ -19,7 +19,7 @@ document.querySelector('#submit-button').addEventListener('click', function (eve
   var effectiveRate = loanTermRate + 0.50
   var loanAmount = [monthlyIncome * 129.6] / [effectiveRate]
   var budget = loanAmount + parseInt(moneyDown)
-  var monthlyPayment = monthlyIncome * 0.36
+  var monthlyPayment = (monthlyIncome * 0.36)
 
   // Console log monthly max payment and total max budget
   console.log('Your max monthly payment is: $' + monthlyPayment + '.')
@@ -29,8 +29,8 @@ document.querySelector('#submit-button').addEventListener('click', function (eve
   var resultsPage = document.querySelector('.jumbotron-special')
   resultsPage.classList.remove('invisible')
   document.querySelector('#first-name').innerText = nameInput
-  document.querySelector('#max-budget').innerText = parseInt(budget)
-  document.querySelector('#max-monthly').innerText = monthlyPayment
+  document.querySelector('#max-budget').innerText = parseInt(budget).toLocaleString()
+  document.querySelector('#max-monthly').innerText = monthlyPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
   window.scrollTo(0, document.body.scrollHeight)
   // Holds user data
@@ -41,12 +41,21 @@ document.querySelector('#submit-button').addEventListener('click', function (eve
     cashdown: moneyDown,
     budget: budget
   }
-  // Ajax call
-  $.ajax({
-    url: '/api/buyers',
-    method: 'POST',
-    data: userData
-  }).then(function (res) {
+  // Fetch to add user data in databse
+  fetch('/api/buyers/', {
+    method: 'post',
+    data: userData,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userData)
+  }).then(res => {
     console.log(res)
   })
+  // Ajax call
+  // $.ajax({
+  //   url: '/api/buyers',
+  //   method: 'POST',
+  //   data: userData
+  // }).then(function (res) {
+  //   console.log(res)
+  // })
 })

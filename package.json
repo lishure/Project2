@@ -8,7 +8,8 @@
     "localstart": "nodemon server.js",
     "lint": "standard --verbose | snazzy",
     "fix": "standard --fix .",
-    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
+    "pretest": "knex migrate:latest --env staging",
+    "test": "npm run lint && cross-env NODE_ENV=staging mocha -u tdd --reporter spec --exit"
   },
   "license": "ISC",
   "dependencies": {
@@ -24,6 +25,7 @@
     "chai-http": "^4.3.0",
     "cross-env": "^5.2.0",
     "mocha": "^6.1.4",
+    "node-sass": "^4.12.0",
     "standard": "^12.0.1"
   },
   "standard": {
