@@ -41,6 +41,11 @@ class Buyers {
       .where(where)
       .del()
   }
+  // This is going to drop the table and recreate it
+  reset () {
+    return knex(this.table)
+      .truncate()
+  }
 }
 
 module.exports = new Buyers()

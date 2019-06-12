@@ -28,8 +28,14 @@ module.exports = {
       password: process.env.dbPassword,
       host: process.env.dbServer,
       port: process.env.dbPort,
-      database: process.env.db,
+      database: 'testdb',
       debug: ['ComQueryPacket', 'RowDataPacket']
+    },
+    migrations: {
+      directory: path.join(__dirname, '/knex/migrations')
+    },
+    seeds: {
+      directory: path.join(__dirname, '/knex/seeds')
     }
   },
 
@@ -41,6 +47,12 @@ module.exports = {
       host: process.env.DATABASE_URL,
       port: 3306,
       database: process.env.db
+    },
+    migrations: {
+      directory: path.join(__dirname, '/knex/migrations')
+    },
+    seeds: {
+      directory: path.join(__dirname, '/knex/seeds')
     }
   }
 }
