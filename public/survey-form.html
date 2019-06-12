@@ -163,6 +163,8 @@ document.querySelector('#submit-button').addEventListener('click', function (eve
     var userValidation = document.querySelector('#container1')
     userValidation.classList.remove('invisible')
   } else {
+    var userValidation = document.querySelector('#container1')
+    userValidation.classList.add('invisible')
     // Logs everything to console
     console.log('Your Name: ' + userData.name)
     console.log('Your Credit Rating: ' + userData.credit)
