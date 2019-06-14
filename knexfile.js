@@ -22,7 +22,7 @@ module.exports = {
   },
 
   production: {
-    client: 'cleardb',
+    client: 'mysql',
     connection: {
       user: process.env.USER,
       password: process.env.PASSWORD,
