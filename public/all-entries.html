@@ -28,9 +28,9 @@
       <tbody id="allEntries" class="lh-copy"></tbody>
     </table>
 
-    <div class="tc white">
-      <a href="/api/buyers" class="white link">List of Buyers (API)</a> | <a href="https://github.com/lishure/Project2"
-        class="white link">GitHub Repo</a>
+    <div class="mt4 f7 tc">
+      <a href="/api/buyers" class="blue link">List of Buyers (API)</a> &nbsp; <a href="https://github.com/lishure/Project2"
+        class="blue link">GitHub Repo</a>
     </div>
   </div>
 
@@ -75,7 +75,7 @@
               <td class="pa3 tc">$${formatMoney(budget)}</td>
               <td class="pa3 tc">${creditGrade}</td>
               <td class="pa3 tc">
-                <a href="/edit/id:${id}" class="btn-edit f6 link dim br-pill ph3 pv1 dib white bg-blue mr2">Edit</a>
+                <a href="/edit/${id}" class="btn-edit f6 link dim br-pill ph3 pv1 dib white bg-blue mr2">Edit</a>
                 <a href="/api/buyers/${id}" class="btn-delete f6 link dim br-pill ph3 pv1 dib white bg-dark-red">Delete</a>
               </td>
             </tr>
@@ -83,7 +83,7 @@
           const target = document.querySelector('#allEntries')
           target.innerHTML += template
         }
-        
+
         const deleteBtns = document.querySelectorAll('.btn-delete');
         deleteBtns.forEach(button => {
           button.addEventListener('click', event => {
