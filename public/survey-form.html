@@ -7,19 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mortgage Calculator: Survey</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
 
   <style>
-    #matchedProperty {
+    #results {
       left: 50%;
       transform: translate(-50%, -50%);
       top: 50%;
@@ -32,24 +22,6 @@
       left: 0;
       top: 0;
       width: 100vw;
-    }
-
-    .button {
-      background-color: green;
-      border: none;
-      color: white;
-      padding: 5px 5px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 14px;
-    }
-
-    #container1 {
-      border: 1px;
-      margin: 1px -100px 1px 500px;
-      color: red;
-      font-weight: bolder;
     }
 
     body {
@@ -65,166 +37,137 @@
   <div class="ma4">
     <form class="mb4">
       <h2 class="lh-title">About You</h2>
+      <div class="bg-red white dn ph2 pv2 mb4" id="errorMsg">Please fill out all required fields</div>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">Full Name (Required)</legend>
-        <input type="text" id="firstName" name="firstName" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-          required>
+        <legend class="b bw0 f6 pa0 ma0">Full Name*</legend>
+        <input type="text" id="firstName" name="firstName" class="input-reset ba b--black-20 br2 ph2 pv1 w-100" required>
       </fieldset>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100" required>
         <legend class="b bw0 f6 pa0 ma0">Credit Score</legend>
         <select name="creditScore" id="creditScore" class="input-reset ba b--black-20 br2 ph2 pv1 w-100">
           <option disabled="disabled" selected="true">Please Select One</option>
-          <option value="Very Poor" data-credit-score-minimum="300" data-credit-score-max="579">Very Poor (300-579)
-          </option>
+          <option value="Very Poor" data-credit-score-minimum="300" data-credit-score-max="579">Very Poor (300-579)</option>
           <option value="Fair" data-credit-score-minimum="580" data-credit-score-max="669">Fair (580-669)</option>
           <option value="Good" data-credit-score-minimum="670" data-credit-score-max="739">Good (670-739)</option>
-          <option value="Very Good" data-credit-score-minimum="740" data-credit-score-max="799">Very Good (740-799)
-          </option>
-          <option value="Exceptional" data-credit-score-minimum="800" data-credit-score-max="850">Exceptional (800-850)
-          </option>
+          <option value="Very Good" data-credit-score-minimum="740" data-credit-score-max="799">Very Good (740-799)</option>
+          <option value="Exceptional" data-credit-score-minimum="800" data-credit-score-max="850">Exceptional (800-850)</option>
         </select>
       </fieldset>
-      <div class="flex items-center">
-        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-          <legend class="b bw0 f6 pa0 ma0">Monthly Income (Required)</legend>
-          <input type="number" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-            required>
+      <div class="flex items-center justify-between">
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-60">
+          <legend class="b bw0 f6 pa0 ma0">Monthly Income*</legend>
+          <input type="number" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100" required>
         </fieldset>
-        <!--added interest rate fieldset and today's rate button-->
-        <a type="button" href="https:www.bankrate.com/mortgages/30-year-mortgage-rates" value="facebook" target="_blank"
-          class="button">
-          <h6>Get Today's Rate</h6>
-        </a>
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-20 tc">
+          <legend class="mb1">&nbsp;</legend>
+          <a href="https:www.bankrate.com/mortgages/30-year-mortgage-rates" target="_blank" class="bg-green f6 link dim br-pill ph3 pv2 mb2 dib white">Get Today's Rate</a>
+        </fieldset>
         <br>
-        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-40">
-          <legend class="b bw0 f6 pa0 ma0">Today's Interest Rate % based on 30-Year Fixed (Required)</legend>
-          <input type="number" id="interestRate" name="interestRate" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-            required>
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-20">
+          <legend class="b bw0 f6 pa0 ma0">Interest Rate*</legend>
+          <input type="number" id="interestRate" name="interestRate" class="input-reset ba b--black-20 br2 ph2 pv1 w-100" required>
         </fieldset>
       </div>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">Down Payment (Required)</legend>
-        <input type="number" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-          required>
+        <legend class="b bw0 f6 pa0 ma0">Down Payment*</legend>
+        <input type="number" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100" required>
       </fieldset>
-      <div class="container invisible" id="container1">*Please fill out all required fields*</div>
-      <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100"
-        id="submit-button" type="button">Submit</button>
-    </form>
-    <div class="tc">
-      <!-- Change the API link accordingly -->
-      <a href="/api/entries" class="blue link">API Entries</a> | <a href="https://github.com/lishure/Project2"
-        class="blue link">GitHub Repo</a>
-    </div>
-    <!--Added Jumbotron to toggle results-->
-    <div class="jumbotron jumbotron-special invisible">
-      <div id="results-page">
-        <h2>Congratulations <span id="first-name"></span>!</h2>
-        <img
-          src='https://media.istockphoto.com/photos/home-exterior-picture-id453944565?k=6&m=453944565&s=612x612&w=0&h=rnccdZr2CD57ipbB3igpOEzVPrPfu5IPT_wFZ2VmwG8='
-          alt="Image" height="300px" width="400px">
-        <br>
-        <p>Your Max Budget is : *$<span id="max-budget">0</span></p>
-        <p>Your Max Monthly payment is : *$<span id="max-monthly">0</span></p>
-        <p>*These results are an estimation based on your input and gives you an idea of what you can afford and in no
-          way a guarantee of what you can truly afford.
-          If you would like to move forward, the next step would be to speak with a Lender for a pre-approval.
+      <div class="b tc f7">
+        Interest Rate % based on 30-Year Fixed
       </div>
-    </div>
-    <!--End of Jumbotron-->
-    <div id="matchedProperty" class="card modal dn absolute z-5 mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10"
-      role="dialog" aria-hidden="true">
-      <h3 class="tc">
-        Based on your input, here are the results:
-      </h3>
-      <div class="card-body tc"></div>
-    </div>
-    <div class="overlay fixed z-1"></div>
+      <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100" id="submit-button" type="button">Submit</button>
+    </form>
+
     <div class="tc">
-      <!-- Change the API link accordingly -->
-      <a href="/api/buyers" class="blue link">List of Buyers (API)</a> | <a href="https://github.com/lishure/Project2"
-        class="blue link">GitHub Repo</a>
+      <a href="/api/buyers" class="blue link">List of Buyers (API)</a> | <a href="https://github.com/lishure/Project2" class="blue link">GitHub Repo</a>
     </div>
 
-    <script>
-      const form = document.querySelector('form')
-      const modal = document.querySelector('#matchedFriend')
-      const modalContent = document.querySelector('.card-body')
-      const overlay = document.querySelector('.overlay')
-      /*
-        // activate modal
-        modal.classList.remove('dn')
-        // activate overlay
-        overlay.classList.add('active')
-        // when overlay is clicked, reload the page
-        overlay.addEventListener('click', event => {
-          event.preventDefault();
-          location.reload()
-        })
-      */
+    <!-- Modal -->
+    <div id="results" class="bg-white absolute pa4 dn z-5">
+      <h2>Congratulations <span id="first-name"></span>!</h2>
+      <img
+        src='https://media.istockphoto.com/photos/home-exterior-picture-id453944565?k=6&m=453944565&s=612x612&w=0&h=rnccdZr2CD57ipbB3igpOEzVPrPfu5IPT_wFZ2VmwG8='
+        alt="" class="w-100">
+      <br>
+      <p class="b blue">Your Max Budget is : $<span id="max-budget">0</span>*</p>
+      <p class="b green">Your Max Monthly payment is : $<span id="max-monthly">0</span>*</p>
+      <p class="f7 lh-copy">*These results are an estimation based on your input and gives you an idea of what you can afford and in no
+        way a guarantee of what you can truly afford.
+        If you would like to move forward, the next step would be to speak with a Lender for a pre-approval.
+    </div>
+  </div>
+  <div class="overlay fixed z-1"></div>
+  <!-- End of Modal -->
 
-      // On click function to capture user data
-      document.querySelector('#submit-button').addEventListener('click', function (event) {
-        // Grabs user input
-        var nameInput = document.querySelector('#firstName').value.trim()
-        var creditRating = document.querySelector('#creditScore').value.trim()
-        var monthlyIncome = document.querySelector('#incomeLevel').value.trim()
-        var moneyDown = document.querySelector('#downPayment').value.trim()
-        var todaysRate = document.querySelector('#interestRate').value.trim()
+  <script>
+    // Overlay
+    const overlay = document.querySelector('.overlay')
 
-        // Variables to store mortgage calculator equation
-        var decimalRate = todaysRate / 100
-        var loanTermRate = 30 * decimalRate
-        var effectiveRate = loanTermRate + 0.50
-        var loanAmount = [monthlyIncome * 129.6] / [effectiveRate]
-        var budget = loanAmount + parseInt(moneyDown)
-        var monthlyPayment = monthlyIncome * 0.36
-        // Holds user data
-        var userData = {
-          clientname: nameInput,
-          creditgrade: creditRating,
-          income: monthlyIncome,
-          cashdown: moneyDown,
-          budget: budget
-        }
-        fetch('/api/buyers/', {
-          method: 'post',
-          data: userData,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(userData)
-        }).then(res => {
-          console.log(res)
-        })
+    // On click function to capture user data
+    document.querySelector('#submit-button').addEventListener('click', event => {
+      // Grabs user input
+      const nameInput = document.querySelector('#firstName').value.trim()
+      const creditRating = document.querySelector('#creditScore').value.trim()
+      const monthlyIncome = document.querySelector('#incomeLevel').value.trim()
+      const moneyDown = document.querySelector('#downPayment').value.trim()
+      const todaysRate = document.querySelector('#interestRate').value.trim()
 
-        if (nameInput === '' || monthlyIncome === '' || moneyDown === '' || todaysRate === '') {
-          var userValidation = document.querySelector('#container1')
-          userValidation.classList.remove('invisible')
-        } else {
-          var userValidation = document.querySelector('#container1')
-          userValidation.classList.add('invisible')
-          // Logs everything to console
-          // console.log('Your Name: ' + userData.name)
-          // console.log('Your Credit Rating: ' + userData.credit)
-          // console.log('Your Monthly Income: $' + userData.income)
-          // console.log('Down Payment Amount: $ ' + userData.cash)
+      // Variables to store mortgage calculator equation
+      const decimalRate = todaysRate / 100
+      const loanTermRate = 30 * decimalRate
+      const effectiveRate = loanTermRate + 0.50
+      const loanAmount = [monthlyIncome * 129.6] / [effectiveRate]
+      const budget = loanAmount + parseInt(moneyDown)
+      const monthlyPayment = monthlyIncome * 0.36
 
-          // Console log monthly max payment and total max budget
-          console.log('Your max monthly payment is: $' + monthlyPayment + '.')
-          console.log('Your max budget is: $' + parseInt(budget) + '.')
+      // Holds user data
+      const userData = {
+        clientname: nameInput,
+        creditgrade: creditRating,
+        income: monthlyIncome,
+        cashdown: moneyDown,
+        budget
+      }
 
-          // Displays results in HTML
-          var resultsPage = document.querySelector('.jumbotron-special')
-          resultsPage.classList.remove('invisible')
-          document.querySelector('#first-name').innerText = nameInput
-          document.querySelector('#max-budget').innerText = parseInt(budget).toLocaleString()
-          document.querySelector('#max-monthly').innerText = monthlyPayment.toFixed(2)
-
-          window.scrollTo(0, document.body.scrollHeight)
-        }
+      // Post to MySQL DB
+      fetch('/api/buyers/', {
+        method: 'post',
+        data: userData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
+      }).then(res => {
+        console.log(res)
       })
 
+      // Input validation
+      if (nameInput === '' || monthlyIncome === '' || moneyDown === '' || todaysRate === '') {
+        var userValidation = document.querySelector('#errorMsg')
+        userValidation.classList.remove('dn')
+      } else {
+        var userValidation = document.querySelector('#errorMsg')
+        userValidation.classList.add('dn')
+        overlay.classList.remove('active')
+        // Logs everything to console
+        // console.log('Your Name: ' + userData.name)
+        // console.log('Your Credit Rating: ' + userData.credit)
+        // console.log('Your Monthly Income: $' + userData.income)
+        // console.log('Down Payment Amount: $ ' + userData.cash)
 
-    </script>
+        // Console log monthly max payment and total max budget
+        console.log('Your max monthly payment is: $' + monthlyPayment + '.')
+        console.log('Your max budget is: $' + parseInt(budget) + '.')
+
+        // Displays results in HTML
+        const resultsPage = document.querySelector('#results')
+        resultsPage.classList.remove('dn')
+        overlay.classList.add('active')
+        document.querySelector('#first-name').innerText = nameInput
+        document.querySelector('#max-budget').innerText = parseInt(budget).toLocaleString()
+        document.querySelector('#max-monthly').innerText = monthlyPayment.toFixed(2)
+      }
+    })
+
+  </script>
 
 </body>
 
