@@ -21,32 +21,14 @@ module.exports = {
     }
   },
 
-  staging: {
-    client: 'mysql',
-    connection: {
-      user: process.env.dbUser,
-      password: process.env.dbPassword,
-      host: process.env.dbServer,
-      port: process.env.dbPort,
-      database: 'testdb',
-      debug: ['ComQueryPacket', 'RowDataPacket']
-    },
-    migrations: {
-      directory: path.join(__dirname, '/knex/migrations')
-    },
-    seeds: {
-      directory: path.join(__dirname, '/knex/seeds')
-    }
-  },
-
   production: {
-    client: 'mysql',
+    client: 'cleardb',
     connection: {
-      user: '',
-      password: '',
-      host: process.env.DATABASE_URL,
+      user: process.env.USER,
+      password: process.env.PASSWORD,
+      host: process.env.HOST,
       port: 3306,
-      database: process.env.db
+      database: process.env.DATABASE
     },
     migrations: {
       directory: path.join(__dirname, '/knex/migrations')
