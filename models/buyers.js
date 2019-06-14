@@ -4,7 +4,7 @@ const knex = require('../config/connection.js')
  * @class Buyers
  */
 class Buyers {
-  constructor (table = process.env.dbTable) {
+  constructor (table = 'buyers') {
     this.table = table
   }
 
