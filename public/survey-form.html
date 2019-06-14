@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -17,13 +17,14 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-    
+
   <style>
     #matchedProperty {
       left: 50%;
       transform: translate(-50%, -50%);
       top: 50%;
     }
+
     .overlay.active {
       background-color: rgba(0, 0, 0, .25);
       content: "";
@@ -32,8 +33,9 @@
       top: 0;
       width: 100vw;
     }
+
     .button {
-      background-color:green;
+      background-color: green;
       border: none;
       color: white;
       padding: 5px 5px;
@@ -41,19 +43,20 @@
       text-decoration: none;
       display: inline-block;
       font-size: 14px;
-      }
+    }
+
     #container1 {
       border: 1px;
       margin: 1px -100px 1px 500px;
       color: red;
       font-weight: bolder;
     }
-    body{
-        background: url("http://www.powergroupintl.com/wp-content/uploads/2017/12/Savin-NY-Website-Background-Web1.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+
+    body {
+      background: url("http://www.powergroupintl.com/wp-content/uploads/2017/12/Savin-NY-Website-Background-Web1.jpg") no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
     }
   </style>
 </head>
@@ -81,25 +84,27 @@
           </option>
         </select>
       </fieldset>
-      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">Monthly Income (Required)</legend>
-        <input type="number" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-          required>
-      </fieldset>
+      <div class="flex items-center">
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+          <legend class="b bw0 f6 pa0 ma0">Monthly Income (Required)</legend>
+          <input type="number" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+            required>
+        </fieldset>
+        <!--added interest rate fieldset and today's rate button-->
+        <a type="button" href="https:www.bankrate.com/mortgages/30-year-mortgage-rates" value="facebook" target="_blank"
+          class="button">
+          <h6>Get Today's Rate</h6>
+        </a>
+        <br>
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-40">
+          <legend class="b bw0 f6 pa0 ma0">Today's Interest Rate % based on 30-Year Fixed (Required)</legend>
+          <input type="number" id="interestRate" name="interestRate" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+            required>
+        </fieldset>
+      </div>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
         <legend class="b bw0 f6 pa0 ma0">Down Payment (Required)</legend>
         <input type="number" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-          required>
-      </fieldset>
-      <!--added interest rate fieldset and today's rate button-->
-      <a type="button" href="https:www.bankrate.com/mortgages/30-year-mortgage-rates" value="facebook" target="_blank"
-        class="button">
-        <h6>Get Today's Rate</h6>
-      </a>
-      <br>
-      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-40">
-        <legend class="b bw0 f6 pa0 ma0">Today's Interest Rate % based on 30-Year Fixed (Required)</legend>
-        <input type="number" id="interestRate" name="interestRate" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
           required>
       </fieldset>
       <div class="container invisible" id="container1">*Please fill out all required fields*</div>
@@ -107,10 +112,10 @@
         id="submit-button" type="button">Submit</button>
     </form>
     <div class="tc">
-        <!-- Change the API link accordingly -->
-        <a href="/api/entries" class="blue link">API Entries</a> | <a href="https://github.com/lishure/Project2"
-          class="blue link">GitHub Repo</a>
-      </div>
+      <!-- Change the API link accordingly -->
+      <a href="/api/entries" class="blue link">API Entries</a> | <a href="https://github.com/lishure/Project2"
+        class="blue link">GitHub Repo</a>
+    </div>
     <!--Added Jumbotron to toggle results-->
     <div class="jumbotron jumbotron-special invisible">
       <div id="results-page">
@@ -158,65 +163,65 @@
         })
       */
 
-// On click function to capture user data
-document.querySelector('#submit-button').addEventListener('click', function (event) {
-// Grabs user input
-  var nameInput = document.querySelector('#firstName').value.trim()
-  var creditRating = document.querySelector('#creditScore').value.trim()
-  var monthlyIncome = document.querySelector('#incomeLevel').value.trim()
-  var moneyDown = document.querySelector('#downPayment').value.trim()
-  var todaysRate = document.querySelector('#interestRate').value.trim()
+      // On click function to capture user data
+      document.querySelector('#submit-button').addEventListener('click', function (event) {
+        // Grabs user input
+        var nameInput = document.querySelector('#firstName').value.trim()
+        var creditRating = document.querySelector('#creditScore').value.trim()
+        var monthlyIncome = document.querySelector('#incomeLevel').value.trim()
+        var moneyDown = document.querySelector('#downPayment').value.trim()
+        var todaysRate = document.querySelector('#interestRate').value.trim()
 
-  // Variables to store mortgage calculator equation
-  var decimalRate = todaysRate / 100
-    var loanTermRate = 30 * decimalRate
-    var effectiveRate = loanTermRate + 0.50
-    var loanAmount = [monthlyIncome * 129.6] / [effectiveRate]
-    var budget = loanAmount + parseInt(moneyDown)
-    var monthlyPayment = monthlyIncome * 0.36
-  // Holds user data
-  var userData = {
-    clientname: nameInput,
-    creditgrade: creditRating,
-    income: monthlyIncome,
-    cashdown: moneyDown,
-    budget: budget
-  }
-  fetch('/api/buyers/', {
-    method: 'post',
-    data: userData,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(userData)
-  }).then(res => {
-    console.log(res)
-  })
+        // Variables to store mortgage calculator equation
+        var decimalRate = todaysRate / 100
+        var loanTermRate = 30 * decimalRate
+        var effectiveRate = loanTermRate + 0.50
+        var loanAmount = [monthlyIncome * 129.6] / [effectiveRate]
+        var budget = loanAmount + parseInt(moneyDown)
+        var monthlyPayment = monthlyIncome * 0.36
+        // Holds user data
+        var userData = {
+          clientname: nameInput,
+          creditgrade: creditRating,
+          income: monthlyIncome,
+          cashdown: moneyDown,
+          budget: budget
+        }
+        fetch('/api/buyers/', {
+          method: 'post',
+          data: userData,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(userData)
+        }).then(res => {
+          console.log(res)
+        })
 
-  if (nameInput === '' || monthlyIncome === '' || moneyDown === '' || todaysRate === '') {
-    var userValidation = document.querySelector('#container1')
-    userValidation.classList.remove('invisible')
-  } else {
-    var userValidation = document.querySelector('#container1')
-    userValidation.classList.add('invisible')
-    // Logs everything to console
-    // console.log('Your Name: ' + userData.name)
-    // console.log('Your Credit Rating: ' + userData.credit)
-    // console.log('Your Monthly Income: $' + userData.income)
-    // console.log('Down Payment Amount: $ ' + userData.cash)
+        if (nameInput === '' || monthlyIncome === '' || moneyDown === '' || todaysRate === '') {
+          var userValidation = document.querySelector('#container1')
+          userValidation.classList.remove('invisible')
+        } else {
+          var userValidation = document.querySelector('#container1')
+          userValidation.classList.add('invisible')
+          // Logs everything to console
+          // console.log('Your Name: ' + userData.name)
+          // console.log('Your Credit Rating: ' + userData.credit)
+          // console.log('Your Monthly Income: $' + userData.income)
+          // console.log('Down Payment Amount: $ ' + userData.cash)
 
-    // Console log monthly max payment and total max budget
-    console.log('Your max monthly payment is: $' + monthlyPayment + '.')
-    console.log('Your max budget is: $' + parseInt(budget) + '.')
+          // Console log monthly max payment and total max budget
+          console.log('Your max monthly payment is: $' + monthlyPayment + '.')
+          console.log('Your max budget is: $' + parseInt(budget) + '.')
 
-    // Displays results in HTML
-    var resultsPage = document.querySelector('.jumbotron-special')
-    resultsPage.classList.remove('invisible')
-    document.querySelector('#first-name').innerText = nameInput
-    document.querySelector('#max-budget').innerText = parseInt(budget).toLocaleString()
-    document.querySelector('#max-monthly').innerText = monthlyPayment.toFixed(2)
+          // Displays results in HTML
+          var resultsPage = document.querySelector('.jumbotron-special')
+          resultsPage.classList.remove('invisible')
+          document.querySelector('#first-name').innerText = nameInput
+          document.querySelector('#max-budget').innerText = parseInt(budget).toLocaleString()
+          document.querySelector('#max-monthly').innerText = monthlyPayment.toFixed(2)
 
-    window.scrollTo(0, document.body.scrollHeight)
-  }
-})
+          window.scrollTo(0, document.body.scrollHeight)
+        }
+      })
 
 
     </script>
