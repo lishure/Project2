@@ -7,6 +7,22 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mortgage Calculator: Edit/Update</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+  <style>
+    #results {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 50%;
+    }
+
+    .overlay.active {
+      background-color: rgba(0, 0, 0, .25);
+      content: "";
+      height: 100vh;
+      left: 0;
+      top: 0;
+      width: 100vw;
+    }
+  </style>
 </head>
 
 <body class="sans-serif">
@@ -56,7 +72,7 @@
         Interest Rate % based on 30-Year Fixed
       </div>
       <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100"
-        id="submit-button" type="button">Update</button>
+        id="updateBtn" type="button">Update</button>
     </form>
 
     <div class="f7 tc">
@@ -64,7 +80,26 @@
         href="https://github.com/lishure/Project2" class="blue dim link">GitHub Repo</a>
     </div>
 
+    <!-- Modal -->
+    <div id="results" class="bg-white absolute pa4 dn z-5">
+        <h2>Congratulations <span id="first-name"></span>!</h2>
+        <img
+          src='https://media.istockphoto.com/photos/home-exterior-picture-id453944565?k=6&m=453944565&s=612x612&w=0&h=rnccdZr2CD57ipbB3igpOEzVPrPfu5IPT_wFZ2VmwG8='
+          alt="" class="w-100">
+        <br>
+        <p class="b blue">Your Max Budget is : $<span id="max-budget">0</span>*</p>
+        <p class="b green">Your Max Monthly payment is : $<span id="max-monthly">0</span>*</p>
+        <p class="f7 lh-copy">*These results are an estimation based on your input and gives you an idea of what you can afford and in no
+          way a guarantee of what you can truly afford.
+          If you would like to move forward, the next step would be to speak with a Lender for a pre-approval.
+      </div>
+    </div>
+    <div class="overlay fixed z-1"></div>
+
     <script>
+      // Overlay
+      const overlay = document.querySelector('.overlay')
+      const form = document.querySelector('form')
 
       let buyerID = window.location.href;
       buyerID = buyerID.substring(buyerID.lastIndexOf('/') + 1)
@@ -97,6 +132,76 @@
             document.querySelector('#downPayment').value = cashdown
           })
         })
+
+      document.querySelector('#updateBtn').addEventListener('click', event => {
+        event.preventDefault()
+
+        // Grabs user input
+        const nameInput = document.querySelector('#firstName').value.trim()
+        const creditRating = document.querySelector('#creditScore').value.trim()
+        const monthlyIncome = document.querySelector('#incomeLevel').value.trim()
+        const moneyDown = document.querySelector('#downPayment').value.trim()
+        const todaysRate = document.querySelector('#interestRate').value.trim()
+
+        // Variables to store mortgage calculator equation
+        const decimalRate = todaysRate / 100
+        const loanTermRate = 30 * decimalRate
+        const effectiveRate = loanTermRate + 0.50
+        const loanAmount = [monthlyIncome * 129.6] / [effectiveRate]
+        const budget = loanAmount + parseInt(moneyDown)
+        const monthlyPayment = monthlyIncome * 0.36
+
+        // Holds user data
+        const userData = {
+          clientname: nameInput,
+          creditgrade: creditRating,
+          income: monthlyIncome,
+          cashdown: moneyDown,
+          budget
+        }
+
+         // Input validation
+        if (nameInput === '' || monthlyIncome === '' || moneyDown === '' || todaysRate === '') {
+          var userValidation = document.querySelector('#errorMsg')
+          userValidation.classList.remove('dn')
+        } else {
+          var userValidation = document.querySelector('#errorMsg')
+          userValidation.classList.add('dn')
+          overlay.classList.remove('active')
+          // Logs everything to console
+          // console.log('Your Name: ' + userData.name)
+          // console.log('Your Credit Rating: ' + userData.credit)
+          // console.log('Your Monthly Income: $' + userData.income)
+          // console.log('Down Payment Amount: $ ' + userData.cash)
+
+          // Console log monthly max payment and total max budget
+          console.log('Your max monthly payment is: $' + monthlyPayment + '.')
+          console.log('Your max budget is: $' + parseInt(budget) + '.')
+
+          // Displays results in HTML
+          const resultsPage = document.querySelector('#results')
+          resultsPage.classList.remove('dn')
+          overlay.classList.add('active')
+          document.querySelector('#first-name').innerText = nameInput
+          document.querySelector('#max-budget').innerText = parseInt(budget).toLocaleString()
+          document.querySelector('#max-monthly').innerText = monthlyPayment.toFixed(2)
+
+          // Update entry on MySQL DB
+          fetch(`/api/buyers/${buyerID}`, {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+          }).then(response => {
+            console.log(response)
+          })
+        }
+      })
+
+      overlay.addEventListener('click', event => {
+        event.preventDefault()
+        form.reset()
+        setTimeout(window.location.href = '/buyers', 500)
+      })
 
     </script>
 </body>

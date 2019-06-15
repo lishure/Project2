@@ -21,6 +21,24 @@ module.exports = {
     }
   },
 
+  staging: {
+    client: 'mysql',
+    connection: {
+      user: process.env.dbUser,
+      password: process.env.dbPassword,
+      host: process.env.dbServer,
+      port: process.env.dbPort,
+      database: 'testdb',
+      debug: ['ComQueryPacket', 'RowDataPacket']
+    },
+    migrations: {
+      directory: path.join(__dirname, '/knex/migrations')
+    },
+    seeds: {
+      directory: path.join(__dirname, '/knex/seeds')
+    }
+  },
+
   production: {
     client: 'mysql',
     connection: {

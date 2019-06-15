@@ -41,7 +41,7 @@ module.exports = function (app) {
   })
 
   // Update an buyer by id
-  app.delete('/api/buyers/:id', (req, res) => {
+  app.put('/api/buyers/:id', (req, res) => {
     Buyers.update(req.params, req.body)
       .then(buyers => {
         res.json(buyers)
