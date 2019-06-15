@@ -48,7 +48,7 @@ class Buyers {
    */
 
   update (where, values) {
-    return knex.select()
+    return knex
       .table(this.table)
       .where(where)
       .update(values)
