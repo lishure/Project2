@@ -12,4 +12,8 @@ module.exports = app => {
   app.get('/buyers', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/all-entries.html'))
   })
+
+  app.get('/buyers/:id', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/entry.html'))
+  })
 }
