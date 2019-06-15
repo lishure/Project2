@@ -35,10 +35,23 @@ class Buyers {
    * @returns Promise
    * @memberof Buyer
    */
-  getID () {
+  getID (where) {
     return knex.select()
       .table(this.table)
-      .returning('id')
+      .where(where)
+  }
+
+  /**
+   * Update record
+   * @returns Promise
+   * @memberof Buyer
+   */
+
+  update (where, values) {
+    return knex.select()
+      .table(this.table)
+      .where(where)
+      .update(values)
   }
 
   /**

@@ -18,7 +18,7 @@ module.exports = function (app) {
 
   // Get buyer by id
   app.get('/api/buyers/:id', (req, res) => {
-    Buyers.getID(req.body)
+    Buyers.getID(req.params)
       .then(buyers => {
         res.json(buyers)
       })

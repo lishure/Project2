@@ -23,14 +23,11 @@
         <legend class="b bw0 f6 pa0 ma0">Credit Score</legend>
         <select name="creditScore" id="creditScore" class="input-reset ba b--black-20 br2 ph2 pv1 w-100">
           <option disabled="disabled" selected="true">Please Select One</option>
-          <option value="Very Poor" data-credit-score-minimum="300" data-credit-score-max="579">Very Poor (300-579)
-          </option>
+          <option value="Very Poor" data-credit-score-minimum="300" data-credit-score-max="579">Very Poor (300-579)</option>
           <option value="Fair" data-credit-score-minimum="580" data-credit-score-max="669">Fair (580-669)</option>
           <option value="Good" data-credit-score-minimum="670" data-credit-score-max="739">Good (670-739)</option>
-          <option value="Very Good" data-credit-score-minimum="740" data-credit-score-max="799">Very Good (740-799)
-          </option>
-          <option value="Exceptional" data-credit-score-minimum="800" data-credit-score-max="850">Exceptional (800-850)
-          </option>
+          <option value="Very Good" data-credit-score-minimum="740" data-credit-score-max="799">Very Good (740-799)</option>
+          <option value="Exceptional" data-credit-score-minimum="800" data-credit-score-max="850">Exceptional (800-850)</option>
         </select>
       </fieldset>
       <div class="flex items-center justify-between">
@@ -44,7 +41,6 @@
           <a href="https://www.bankrate.com/mortgages/30-year-mortgage-rates" target="_blank"
             class="bg-green f6 link dim br-pill ph3 pv2 mb2 dib white">Get Today's Rate</a>
         </fieldset>
-        <br>
         <fieldset class="bw0 ph0 pv2 mb2 mh0 w-20">
           <legend class="b bw0 f6 pa0 ma0">Interest Rate*</legend>
           <input type="number" id="interestRate" name="interestRate"
@@ -69,10 +65,39 @@
     </div>
 
     <script>
+
       let buyerID = window.location.href;
       buyerID = buyerID.substring(buyerID.lastIndexOf('/') + 1)
       
-      console.log(buyerID)
+      // Get specific buyer entry based on id
+      fetch(`/api/buyers/${buyerID}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(buyer => {
+          buyer.forEach(item => {
+            let clientName = item.clientname
+            let creditGrade = item.creditgrade
+            let income = item.income
+            let cashdown = item.cashdown
+            let budget = item.budget
+
+            var setSelectedIndex = (selector, value) => {
+              for (let i = 0; i < selector.options.length; i++) {
+                if (selector.options[i].value === value) {
+                  selector.options[i].selected = true
+                }
+              }
+            }
+
+            // Prepopulate values into respective fields
+            document.querySelector('#firstName').value = clientName
+            setSelectedIndex(document.querySelector('#creditScore'), creditGrade)
+            document.querySelector('#incomeLevel').value = income
+            document.querySelector('#downPayment').value = cashdown
+          })
+        })
+
     </script>
 </body>
 
