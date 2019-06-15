@@ -3,7 +3,7 @@ CREATE DATABASE buyersdb;
 
 USE buyersdb;
 
-CREATE TABLE clients (
+CREATE TABLE buyers (
   id INTEGER AUTO_INCREMENT,
   clientname VARCHAR(45),
   income INTEGER,
