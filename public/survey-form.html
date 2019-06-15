@@ -60,7 +60,7 @@
         </fieldset>
         <fieldset class="bw0 ph0 pv2 mb2 mh0 w-20 tc">
           <legend class="mb1">&nbsp;</legend>
-          <a href="https:www.bankrate.com/mortgages/30-year-mortgage-rates" target="_blank" class="bg-green f6 link dim br-pill ph3 pv2 mb2 dib white">Get Today's Rate</a>
+          <a href="https://www.bankrate.com/mortgages/30-year-mortgage-rates" target="_blank" class="bg-green f6 link dim br-pill ph3 pv2 mb2 dib white">Get Today's Rate</a>
         </fieldset>
         <br>
         <fieldset class="bw0 ph0 pv2 mb2 mh0 w-20">
@@ -102,6 +102,7 @@
   <script>
     // Overlay
     const overlay = document.querySelector('.overlay')
+    const form = document.querySelector('form')
 
     // On click function to capture user data
     document.querySelector('#submit-button').addEventListener('click', event => {
@@ -129,16 +130,6 @@
         budget
       }
 
-      // Post to MySQL DB
-      fetch('/api/buyers/', {
-        method: 'post',
-        data: userData,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userData)
-      }).then(res => {
-        console.log(res)
-      })
-
       // Input validation
       if (nameInput === '' || monthlyIncome === '' || moneyDown === '' || todaysRate === '') {
         var userValidation = document.querySelector('#errorMsg')
@@ -164,7 +155,23 @@
         document.querySelector('#first-name').innerText = nameInput
         document.querySelector('#max-budget').innerText = parseInt(budget).toLocaleString()
         document.querySelector('#max-monthly').innerText = monthlyPayment.toFixed(2)
+
+        // Post to MySQL DB
+        fetch('/api/buyers/', {
+          method: 'post',
+          data: userData,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(userData)
+        }).then(res => {
+          console.log(res)
+        })
       }
+    })
+
+    overlay.addEventListener('click', event => {
+      event.preventDefault()
+      form.reset()
+      setTimeout(window.location.reload(), 500)
     })
 
   </script>
