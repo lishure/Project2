@@ -5,86 +5,99 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mortgage Calculator: Edit</title>
+  <title>Mortgage Calculator: Edit/Update</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
-  <style>
-    #matchedProperty {
-      left: 50%;
-      transform: translate(-50%, -50%);
-      top: 50%;
-    }
-    .overlay.active {
-      background-color: rgba(0, 0, 0, .25);
-      content: "";
-      height: 100vh;
-      left: 0;
-      top: 0;
-      width: 100vw;
-    }
-  </style>
 </head>
 
 <body class="sans-serif">
   <div class="ma4">
-    <h1 class="f3 fw2 mb3 mt4 mt0-ns lh-title tc">Mortgage Calculator: Update</h1>
     <form class="mb4">
       <h2 class="lh-title">About You</h2>
+      <div class="bg-red white dn ph2 pv2 mb4" id="errorMsg">Please fill out all required fields</div>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">ID</legend>
-        <input type="text" id="entryID" name="entryID" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-          value="4">
-      </fieldset>
-      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">Name</legend>
+        <legend class="b bw0 f6 pa0 ma0">Full Name*</legend>
         <input type="text" id="firstName" name="firstName" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-          value="Oliver Grant">
+          required>
       </fieldset>
-      <h2 class="lh-title">Questions</h2>
-      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100" required>
         <legend class="b bw0 f6 pa0 ma0">Credit Score</legend>
         <select name="creditScore" id="creditScore" class="input-reset ba b--black-20 br2 ph2 pv1 w-100">
-          <option disabled="disabled">Please Select One</option>
-          <option value="Very Poor" data-credit-score-minimum="300" data-credit-score-max="579">Very Poor (300-579)
-          </option>
+          <option disabled="disabled" selected="true">Please Select One</option>
+          <option value="Very Poor" data-credit-score-minimum="300" data-credit-score-max="579">Very Poor (300-579)</option>
           <option value="Fair" data-credit-score-minimum="580" data-credit-score-max="669">Fair (580-669)</option>
           <option value="Good" data-credit-score-minimum="670" data-credit-score-max="739">Good (670-739)</option>
-          <option value="Very Good" data-credit-score-minimum="740" data-credit-score-max="799" selected="true">Very Good (740-799)
-          </option>
-          <option value="Exceptional" data-credit-score-minimum="800" data-credit-score-max="850">Exceptional (800-850)
-          </option>
+          <option value="Very Good" data-credit-score-minimum="740" data-credit-score-max="799">Very Good (740-799)</option>
+          <option value="Exceptional" data-credit-score-minimum="800" data-credit-score-max="850">Exceptional (800-850)</option>
         </select>
       </fieldset>
+      <div class="flex items-center justify-between">
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-60">
+          <legend class="b bw0 f6 pa0 ma0">Monthly Income*</legend>
+          <input type="number" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+            required>
+        </fieldset>
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-20 tc">
+          <legend class="mb1">&nbsp;</legend>
+          <a href="https://www.bankrate.com/mortgages/30-year-mortgage-rates" target="_blank"
+            class="bg-green f6 link dim br-pill ph3 pv2 mb2 dib white">Get Today's Rate</a>
+        </fieldset>
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-20">
+          <legend class="b bw0 f6 pa0 ma0">Interest Rate*</legend>
+          <input type="number" id="interestRate" name="interestRate"
+            class="input-reset ba b--black-20 br2 ph2 pv1 w-100" required>
+        </fieldset>
+      </div>
       <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">Income</legend>
-        <input type="text" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-          value="---">
+        <legend class="b bw0 f6 pa0 ma0">Down Payment*</legend>
+        <input type="number" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+          required>
       </fieldset>
-      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
-        <legend class="b bw0 f6 pa0 ma0">Down Payment</legend>
-        <input type="text" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
-          value="---">
-      </fieldset>
-
-      <button class="f6 link br-pill ba bw2 ph3 pv2 mb2 dib b--black bg-transparent black pointer w-100" type="button"
-        data-toggle="modal" data-target="#matchedFriend">Update</button>
+      <div class="b tc f7">
+        Interest Rate % based on 30-Year Fixed
+      </div>
+      <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100"
+        id="submit-button" type="button">Update</button>
     </form>
 
-    <div id="matchedProperty" class="card modal dn absolute z-5 mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10"
-      role="dialog" aria-hidden="true">
-      <h3 class="tc">
-        Based on your input, here are the results:
-      </h3>
-      <div class="card-body tc"></div>
-    </div>
-    <div class="overlay fixed z-1"></div>
-
-    <div class="tc f7">
-      <a href="/api/buyers" class="blue link">List of Buyers (API)</a> &nbsp; <a href="https://github.com/lishure/Project2"
-        class="blue link">GitHub Repo</a>
+    <div class="f7 tc">
+      <a href="/api/buyers" class="blue dim link">List of Buyers (API)</a> &nbsp; <a
+        href="https://github.com/lishure/Project2" class="blue dim link">GitHub Repo</a>
     </div>
 
     <script>
+
+      let buyerID = window.location.href;
+      buyerID = buyerID.substring(buyerID.lastIndexOf('/') + 1)
       
+      // Get specific buyer entry based on id
+      fetch(`/api/buyers/${buyerID}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(buyer => {
+          buyer.forEach(item => {
+            let clientName = item.clientname
+            let creditGrade = item.creditgrade
+            let income = item.income
+            let cashdown = item.cashdown
+            let budget = item.budget
+
+            var setSelectedIndex = (selector, value) => {
+              for (let i = 0; i < selector.options.length; i++) {
+                if (selector.options[i].value === value) {
+                  selector.options[i].selected = true
+                }
+              }
+            }
+
+            // Prepopulate values into respective fields
+            document.querySelector('#firstName').value = clientName
+            setSelectedIndex(document.querySelector('#creditScore'), creditGrade)
+            document.querySelector('#incomeLevel').value = income
+            document.querySelector('#downPayment').value = cashdown
+          })
+        })
+
     </script>
 </body>
 

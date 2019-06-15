@@ -22,7 +22,7 @@ class Buyers {
    * Create a new record
    * @param {Object} values The values to insert in the form of {column: value}
    * @returns Promise
-   * @memberof Example
+   * @memberof Buyer
    */
   create (values) {
     return knex(this.table)
@@ -31,16 +31,41 @@ class Buyers {
   }
 
   /**
+   * Get record
+   * @returns Promise
+   * @memberof Buyer
+   */
+  getID (where) {
+    return knex.select()
+      .table(this.table)
+      .where(where)
+  }
+
+  /**
+   * Update record
+   * @returns Promise
+   * @memberof Buyer
+   */
+
+  update (where, values) {
+    return knex.select()
+      .table(this.table)
+      .where(where)
+      .update(values)
+  }
+
+  /**
    * Delete one or more records by criteria
    * @param {Object} where The where clause in the form of {column: value}
    * @returns Promise
-   * @memberof Example
+   * @memberof Buyer
    */
   destroy (where) {
     return knex(this.table)
       .where(where)
       .del()
   }
+
   // This is going to drop the table and recreate it
   reset () {
     return knex(this.table)
