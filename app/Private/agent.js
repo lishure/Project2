@@ -40,7 +40,7 @@ function start () {
 }
 // function to view all clients in database
 function showClients () {
-  connection.query('SELECT * FROM clients', function (err, res) {
+  connection.query('SELECT * FROM buyers', function (err, res) {
     if (err) throw err
     console.table(res)
     connection.end()
@@ -69,9 +69,9 @@ function selectCredit () {
         aCredit()
       }
     })
-  // function to display ckients with F credit
+  // function to display clients with F credit
   function fCredit () {
-    connection.query('SELECT * FROM clients WHERE creditgrade = "F"', function (err, res) {
+    connection.query('SELECT * FROM buyers WHERE creditgrade = "Very Poor"', function (err, res) {
       if (err) throw err
       console.table(res)
       connection.end()
@@ -79,7 +79,7 @@ function selectCredit () {
   }
   // function to display ckients with d credit
   function dCredit () {
-    connection.query('SELECT * FROM clients WHERE creditgrade = "D"', function (err, res) {
+    connection.query('SELECT * FROM buyers WHERE creditgrade = "Fair"', function (err, res) {
       if (err) throw err
       console.table(res)
       connection.end()
@@ -87,7 +87,7 @@ function selectCredit () {
   }
   // function to display ckients with c credit
   function cCredit () {
-    connection.query('SELECT * FROM clients WHERE creditgrade = "C"', function (err, res) {
+    connection.query('SELECT * FROM buyers WHERE creditgrade = "Good"', function (err, res) {
       if (err) throw err
       console.table(res)
       connection.end()
@@ -95,7 +95,7 @@ function selectCredit () {
   }
   // function to display ckients with b credit
   function bCredit () {
-    connection.query('SELECT * FROM clients WHERE creditgrade = "B"', function (err, res) {
+    connection.query('SELECT * FROM buyers WHERE creditgrade = "Very Good"', function (err, res) {
       if (err) throw err
       console.table(res)
       connection.end()
@@ -103,7 +103,7 @@ function selectCredit () {
   }
   // function to display clients with a credit
   function aCredit () {
-    connection.query('SELECT * FROM clients WHERE creditgrade = "A"', function (err, res) {
+    connection.query('SELECT * FROM buyers WHERE creditgrade = "Exceptional"', function (err, res) {
       if (err) throw err
       console.table(res)
       connection.end()
@@ -118,7 +118,7 @@ function selectPrice () {
       message: 'What is the max budget?'
     }
   ]).then(function (answers) {
-    connection.query('SELECT * FROM clients WHERE budget <=?', answers.maxbudget, function (err, results) {
+    connection.query('SELECT * FROM buyers WHERE budget <=?', answers.maxbudget, function (err, results) {
       if (err) throw err
       console.table(results)
       connection.end()
