@@ -82,7 +82,7 @@ class Buyers {
         const rootDoc = htmlParser.parse(response.data)
         let selector = rootDoc.querySelector('.newRatesTable')
         selector = selector.childNodes[3].querySelector('.mort_interest')
-        selector = parseFloat(selector.text).toFixed(2)
+        selector = parseFloat(selector.text)
         return selector
       })
   }
