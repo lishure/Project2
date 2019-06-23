@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-catch */
+// eslint-disable-next-line no-useless-catch
 // Dependencies
 const Buyers = require('../models/buyers')
 
@@ -43,6 +45,14 @@ module.exports = function (app) {
   // Update an buyer by id
   app.put('/api/buyers/:id', (req, res) => {
     Buyers.update(req.params, req.body)
+      .then(buyers => {
+        res.json(buyers)
+      })
+  })
+
+  // Get current interest rate
+  app.get('/api/get-interest-rate', (req, res) => {
+    Buyers.getInterestRate(req.body)
       .then(buyers => {
         res.json(buyers)
       })
