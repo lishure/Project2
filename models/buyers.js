@@ -1,3 +1,6 @@
+/* eslint-disable no-useless-catch */
+const axios = require('axios')
+const htmlParser = require('fast-html-parser')
 const knex = require('../config/connection.js')
 
 /**
@@ -70,6 +73,18 @@ class Buyers {
   reset () {
     return knex(this.table)
       .truncate()
+  }
+
+  // Get interest rate from a source
+  getInterestRate () {
+    return axios.get('https://www.navyfederal.org/assets/rates/printMortRatesAll.php')
+      .then(response => {
+        const rootDoc = htmlParser.parse(response.data)
+        let selector = rootDoc.querySelector('.newRatesTable')
+        selector = selector.childNodes[3].querySelector('.mort_interest')
+        selector = parseFloat(selector.text)
+        return selector
+      })
   }
 }
 

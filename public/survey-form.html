@@ -54,16 +54,11 @@
         </select>
       </fieldset>
       <div class="flex items-center justify-between">
-        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-60">
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-two-thirds">
           <legend class="b bw0 f6 pa0 ma0">Monthly Income*</legend>
-          <input type="number" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-100" required>
+          <input type="number" id="incomeLevel" name="incomeLevel" class="input-reset ba b--black-20 br2 ph2 pv1 w-90" required>
         </fieldset>
-        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-20 tc">
-          <legend class="mb1">&nbsp;</legend>
-          <a href="https://www.bankrate.com/mortgages/30-year-mortgage-rates" target="_blank" class="bg-green f6 link dim br-pill ph3 pv2 mb2 dib white">Get Today's Rate</a>
-        </fieldset>
-        <br>
-        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-20">
+        <fieldset class="bw0 ph0 pv2 mb2 mh0 w-third">
           <legend class="b bw0 f6 pa0 ma0">Interest Rate*</legend>
           <input type="number" id="interestRate" name="interestRate" class="input-reset ba b--black-20 br2 ph2 pv1 w-100" required>
         </fieldset>
@@ -73,7 +68,7 @@
         <input type="number" id="downPayment" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100" required>
       </fieldset>
       <div class="b tc f7">
-        Interest Rate % based on 30-Year Fixed
+        Interest Rate % based on 30-Year Fixed: <a href="https://www.navyfederal.org/assets/rates/printMortRatesAll.php" target="_blank" class="blue link">Source</a>
       </div>
       <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100" id="submit-button" type="button">Submit</button>
     </form>
@@ -168,6 +163,16 @@
       }
     })
 
+    // Get current rates
+    fetch('/api/get-interest-rate')
+      .then(response => {
+        return response.json()
+      })
+      .then(result => {
+        document.querySelector('#interestRate').value = result
+      })
+
+    // Close overlay
     overlay.addEventListener('click', event => {
       event.preventDefault()
       form.reset()
