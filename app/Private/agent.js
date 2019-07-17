@@ -1,18 +1,18 @@
-require('dotenv').config({ path: '../../.env' })
+// require('dotenv').config({ path: '../../.env' })
 // add the mysql dependency
 var mysql = require('mysql')
 // add inquirer
 var inquirer = require('inquirer')
 // create the mysql connection configuration
 var connection = mysql.createConnection({
-  host: process.env.HOST,
+  host: 'localhost',
   // Your port; if not 3306
   port: 3306,
   // Your sql username
-  user: process.env.USER,
+  user: 'lishure',
   // Your password
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
+  password: '',
+  database: 'buyersdb'
 })
 // connect to buyersdb database
 connection.connect(function (err) {
