@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mortgage Calculator: Survey</title>
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mortgage Calculator: Survey</title>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
 
   <style>
     #results {
@@ -30,6 +32,37 @@
       -moz-background-size: cover;
       background-size: cover;
     }
+
+    #appointment {
+      float: right;
+      margin-top: 2%;
+    }
+    /* appointment button styling */
+    .mb4 {
+    margin-bottom: 1rem;
+    }
+    
+    /* .ba {
+    border-style: solid;
+    border-width: 1px;
+    }
+
+    .bw2 {
+    border-width: .25rem;
+    }
+
+    .ph3 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    }
+
+    .dark-blue {
+    color: #00449e;
+    }
+
+    .f6 {
+    font-size: .875rem;
+    } */
   </style>
 </head>
 
@@ -78,12 +111,15 @@
     </div>
 
     <!-- Modal -->
-    <div id="results" class="bg-white absolute pa4 dn z-5">
+    <div id="results" class="bg-white absolute pa4 z-5 dn"> 
       <h2>Congratulations <span id="first-name"></span>!</h2>
       <img
         src='https://media.istockphoto.com/photos/home-exterior-picture-id453944565?k=6&m=453944565&s=612x612&w=0&h=rnccdZr2CD57ipbB3igpOEzVPrPfu5IPT_wFZ2VmwG8='
         alt="" class="w-100">
       <br>
+      <span class="ph3 mb4" id='appointment'>
+        <a class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib dark-blue" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/krisjecen/mortgage-consultation'});return false;">Let's talk. Make an appointment.</a>
+      </span>
       <p class="b blue">Your Max Budget is : $<span id="max-budget">0</span>*</p>
       <p class="b green">Your Max Monthly payment is : $<span id="max-monthly">0</span>*</p>
       <p class="f7 lh-copy">*These results are an estimation based on your input and gives you an idea of what you can afford and in no
@@ -161,6 +197,14 @@
           console.log(res)
         })
       }
+    })
+
+    // click event for appointment button
+    document.getElementById('appointment').addEventListener('click', event => {
+      // removes the modal screen since calendly has its own screen
+      overlay.classList.remove('active')
+      // hides the results modal so the user can interact with the calendly scheduler
+      document.getElementById('results').classList.add('dn')
     })
 
     // Get current rates
