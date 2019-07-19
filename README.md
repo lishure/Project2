@@ -11,7 +11,8 @@ https://docs.google.com/presentation/d/1mDV2IhUsH_dtshyeJ8aDObixSdOIso49dePFITXS
 
 ## Team Members
 - Cuong
-- John
+- Roberto
+- Kris
 - Lisa 
 
 ## Notable npm packages
