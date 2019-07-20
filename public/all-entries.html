@@ -21,6 +21,7 @@
           <th class="fw6 tl pa3 bg-white tc">Down Payment</th>
           <th class="fw6 tl pa3 bg-white tc">Budget</th>
           <th class="fw6 tl pa3 bg-white tc">Credit Grade</th>
+          <th class="fw6 tl pa3 bg-white tc">Comments</th>
           <th class="fw6 tl pa3 bg-white tc">Action</th>
         </tr>
       </thead>
@@ -63,6 +64,8 @@
           let cashdown = buyer[i].cashdown
           let budget = buyer[i].budget
           let creditGrade = buyer[i].creditgrade
+          let commentSection = []
+
 
           let template =
             `
@@ -73,12 +76,20 @@
               <td class="pa3 tc">$${formatMoney(cashdown)}</td>
               <td class="pa3 tc">$${formatMoney(budget)}</td>
               <td class="pa3 tc">${creditGrade}</td>
+              <td class="pa3 tc">${commentSection}</td>
               <td class="pa3 tc">
                 <a href="/buyers/${id}" class="btn-edit f6 link dim br-pill ph3 pv1 dib white bg-blue mr2">Edit</a>
                 <a href="/api/buyers/${id}" class="btn-delete f6 link dim br-pill ph3 pv1 dib white bg-dark-red">Delete</a>
               </td>
             </tr>
             `
+          
+          // document.querySelector("#editCommentBtn").addEventListener("click", function (event) {
+          //   function commentForm() {
+          //   }
+          // }
+
+
           const target = document.querySelector('#allEntries')
           target.innerHTML += template
         }
