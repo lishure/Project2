@@ -12,3 +12,10 @@ CREATE TABLE buyers (
   creditgrade VARCHAR(45),
   PRIMARY KEY (id)
 );
+
+CREATE TABLE chat (
+  id INTEGER AUTO_INCREMENT,
+  email VARCHAR(45),
+  msg VARCHAR(45),
+  PRIMARY KEY (id)
+);
