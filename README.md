@@ -1,5 +1,5 @@
 # Project2: Mortgage Calculator
-A mortgage calculator app that determines the client's max home purchase amount and monthly mortgage payments using captured data. 
+A mortgage calculator app that determines the client's max home purchase amount and monthly mortgage payments using captured data. The app also lets the user schedule an appointment or send a message if they have questions.
 
 It will have CRUD (Create, Read, Update, Delete) capabilities; the end user to create entries, the "admin" to list all the entries, recall a particular entry, update and delete.
 
