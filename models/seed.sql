@@ -35,3 +35,9 @@ VALUES ("Randy", 4200, 95000, 500000, "Very Poor");
 
 INSERT INTO buyers (clientname, income, cashdown, budget, creditgrade)
 VALUES ("Butters", 5800, 100000, 600000, "Very Poor");
+
+INSERT INTO chat (email, msg)
+VALUES ("example@email.com", "First Message");
+
+INSERT INTO chat (email, msg)
+VALUES ("2example@email.com", "Second Message");
