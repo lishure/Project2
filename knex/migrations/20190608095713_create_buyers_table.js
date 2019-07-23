@@ -10,8 +10,18 @@ exports.up = function (knex, Promise) {
     table.string('creditgrade').notNullable()
     table.timestamp('created_at').defaultTo(knex.fn.now())
   })
+
+  knex.schema.hasTable('chat')
+  return knex.schema.createTable('chat', function (table) {
+    table.increments('id')
+    table.string('email').notNullable()
+    table.string('msg').notNullable()
+    table.timestamp('created_at').defaultTo(knex.fn.now())
+  })
 }
 
 exports.down = function (knex, Promise) {
-  return knex.schema.dropTable('buyers')
+  return 
+    knex.schema.dropTable('buyers'),
+    knex.schema.dropTable('chat')
 }
