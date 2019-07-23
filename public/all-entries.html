@@ -54,9 +54,11 @@
 
     fetch('/api/buyers')
       .then(response => {
+        console.log('this is: ', response)
         return response.json()
       })
       .then(buyer => {
+        console.log('the buyer is: ', buyer)
         for (let i = 0; i < buyer.length; i++) {
           let id = buyer[i].id
           let clientName = buyer[i].clientname
@@ -64,8 +66,7 @@
           let cashdown = buyer[i].cashdown
           let budget = buyer[i].budget
           let creditGrade = buyer[i].creditgrade
-          let commentSection = []
-
+          let commentSection = buyer[i].comment
 
           let template =
             `
