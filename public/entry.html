@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mortgage Calculator: Edit/Update</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <style>
     #results {
       left: 50%;
@@ -66,6 +67,10 @@
       <div class="b tc f7">
         Interest Rate % based on 30-Year Fixed: <a href="https://www.navyfederal.org/assets/rates/printMortRatesAll.php" target="_blank" class="blue link">Source</a>
       </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Comments</label>
+        <textarea class="form-control " id="commentsection" rows="3"></textarea>
+      </div>
       <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100"
         id="updateBtn" type="button">Update</button>
     </form>
@@ -111,6 +116,7 @@
             let income = item.income
             let cashdown = item.cashdown
             let budget = item.budget
+            let comment = item.comment
 
             var setSelectedIndex = (selector, value) => {
               for (let i = 0; i < selector.options.length; i++) {
@@ -125,6 +131,7 @@
             setSelectedIndex(document.querySelector('#creditScore'), creditGrade)
             document.querySelector('#incomeLevel').value = income
             document.querySelector('#downPayment').value = cashdown
+            document.querySelector('#commentsecion').value = comment
           })
         })
 
@@ -137,6 +144,7 @@
         const monthlyIncome = document.querySelector('#incomeLevel').value.trim()
         const moneyDown = document.querySelector('#downPayment').value.trim()
         const todaysRate = document.querySelector('#interestRate').value.trim()
+        const commentInput = document.querySelector('#commentsection').value.trim()
 
         // Variables to store mortgage calculator equation
         const decimalRate = todaysRate / 100
@@ -152,6 +160,7 @@
           creditgrade: creditRating,
           income: monthlyIncome,
           cashdown: moneyDown,
+          comment: commentInput,
           budget
         }
 
@@ -168,6 +177,7 @@
           // console.log('Your Credit Rating: ' + userData.credit)
           // console.log('Your Monthly Income: $' + userData.income)
           // console.log('Down Payment Amount: $ ' + userData.cash)
+          console.log('comments: '+ userData.comment)
 
           // Console log monthly max payment and total max budget
           console.log('Your max monthly payment is: $' + monthlyPayment + '.')
@@ -180,10 +190,10 @@
           document.querySelector('#first-name').innerText = nameInput
           document.querySelector('#max-budget').innerText = parseInt(budget).toLocaleString()
           document.querySelector('#max-monthly').innerText = monthlyPayment.toFixed(2)
-
+          console.log("this is user data", userData)
           // Update entry on MySQL DB
           fetch(`/api/buyers/${buyerID}`, {
-            method: 'put',
+            method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
           }).then(response => {
