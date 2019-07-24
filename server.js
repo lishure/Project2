@@ -3,12 +3,28 @@
 // *********************************************************************************
 
 require('dotenv').config()
-var mongoogse = require('mongoose')
-mongoogse.connect('mongodb://localhost:27017/login')
+var mongoose = require('mongoose')
+mongoose.Promise = global.Promise
+mongoose.connect(
+  process.env.MONGODB_URI ||
+  'mongodb://heroku_v9p9l22r:u816mb3il2qevb060rm36u0v20@ds057934.mlab.com:57934/heroku_v9p9l22r')
+// mongoose.connect('mongodb://localhost:27017/login')
 var passport = require('passport')
 
 const express = require('express')
 const exphbs = require('express-handlebars')
+
+// Add for Passport
+var path = require('path')
+// var logger = require('morgan')
+// var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
+
+var session = require('express-session')
+
+var index = require('./routes/index')
+var users = require('./routes/users')
+var auth = require('./public/auth')(passport)
 
 /* eslint-disable no-unused-vars */
 /* eslint-enable no-unused-vars */
@@ -41,19 +57,6 @@ app.listen(PORT, function () {
     PORT,
     PORT)
 })
-
-// Add for Passport
-
-var path = require('path')
-// var logger = require('morgan')
-// var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
-
-var session = require('express-session')
-
-var index = require('./routes/index')
-var users = require('./routes/users')
-var auth = require('./public/auth')(passport)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))

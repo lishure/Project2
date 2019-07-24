@@ -2,11 +2,8 @@
 // eslint-disable-next-line no-useless-catch
 // Dependencies
 const Buyers = require('../models/buyers')
-<<<<<<< Updated upstream
 const Chat = require('../models/chat')
 
-=======
->>>>>>> Stashed changes
 /**
  * apiRoutes: This routes file returns data to the client/view
  * It differs from the htmlRoutes.js file in that it responds to the client/view requests with data
