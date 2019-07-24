@@ -3,17 +3,18 @@
 // *********************************************************************************
 
 require('dotenv').config()
+var mongoogse = require('mongoose')
+mongoogse.connect('mongodb://localhost:27017/login')
+var passport = require('passport')
 
 const express = require('express')
 const exphbs = require('express-handlebars')
 
 /* eslint-disable no-unused-vars */
-const db = require('./models/example')
 /* eslint-enable no-unused-vars */
 
 const app = express()
 const PORT = process.env.PORT || 3000
-
 // Middleware
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -40,5 +41,43 @@ app.listen(PORT, function () {
     PORT,
     PORT)
 })
+
+// Add for Passport
+
+var path = require('path')
+// var logger = require('morgan')
+// var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
+
+var session = require('express-session')
+
+var index = require('./routes/index')
+var users = require('./routes/users')
+var auth = require('./public/auth')(passport)
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
+// app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
+// app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(session({
+  secret: 'thesecret',
+  saveUninitialized: false,
+  resave: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+require('./passport')(passport)
+
+app.use('/', index)
+app.use('/users', users)
+app.use('/auth', auth)
 
 module.exports = app
