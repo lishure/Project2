@@ -10,7 +10,7 @@ CREATE TABLE buyers (
   cashdown INTEGER,
   budget INTEGER,
   creditgrade VARCHAR(45),
-  comments VARCHAR(200),
+  comment VARCHAR(200),
   PRIMARY KEY (id)
 );
 
