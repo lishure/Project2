@@ -41,3 +41,6 @@ VALUES ("example@email.com", "First Message");
 
 INSERT INTO chat (email, msg)
 VALUES ("2example@email.com", "Second Message");
+
+INSERT INTO chat (email, msg)
+VALUES ("test@email.com", "test Message");
