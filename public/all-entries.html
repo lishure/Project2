@@ -8,7 +8,14 @@
   <title>Mortgage Calculator: Buyers</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
 </head>
-
+<div class="jumbotron jumbotron-fluid primary white" id="banner">
+    <div class="container text-center">
+      <br>
+      <h1 class="display-2" style="text-align: center; font-size: 60px">Welcome</h1>
+      <br>
+      <hr>
+    </div>
+  </div>
 <body class="sans-serif">
   <div class="overflow-auto">
 
@@ -34,6 +41,11 @@
     </div>
   </div>
 
+<style>
+#banner {
+  background: url('https://cdn.wallpapersafari.com/47/58/bu724M.jpg')
+}
+</style>
   <script>
 
     const formatMoney = (amount, decimalCount = 2, decimal = '.', thousands = ',') => {
