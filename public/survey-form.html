@@ -251,39 +251,39 @@
   <script>
     ////ROB JS////
 
-    function openForm() {
-      document.getElementById("chatForm").style.display="block"
-    }
+    // function openForm() {
+    //   document.getElementById("chatForm").style.display="block"
+    // }
 
-    function closeForm() {
-      document.getElementById('chatForm').style.display="none"
-    }
+    // function closeForm() {
+    //   document.getElementById('chatForm').style.display="none"
+    // }
 
-    // function grabs info from both textarea
-    function sendInfo () {
-      let email = document.getElementById('email-text').value.trim()
-      let msg = document.getElementById('msg-text').value.trim()
-      console.log('email:', email)
-      console.log('Message:', msg)
+    // // function grabs info from both textarea
+    // function sendInfo () {
+    //   let email = document.getElementById('email-text').value.trim()
+    //   let msg = document.getElementById('msg-text').value.trim()
+    //   console.log('email:', email)
+    //   console.log('Message:', msg)
 
-      const chatData = {
-        email: email,
-        msg: msg
-      }
-        // Post to chat table
-        fetch('/api/chat/', {
-          method: 'post',
-          data: chatData,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(chatData)
-        }).then(res => {
-          console.log(res)
-        })
+    //   const chatData = {
+    //     email: email,
+    //     msg: msg
+    //   }
+    //     // Post to chat table
+    //     fetch('/api/chat/', {
+    //       method: 'post',
+    //       data: chatData,
+    //       headers: { 'Content-Type': 'application/json' },
+    //       body: JSON.stringify(chatData)
+    //     }).then(res => {
+    //       console.log(res)
+    //     })
 
-        // Resets textarea
-        document.getElementById('email-text').value = ''
-        document.getElementById('msg-text').value = ''
-    }
+    //     // Resets textarea
+    //     document.getElementById('email-text').value = ''
+    //     document.getElementById('msg-text').value = ''
+    // }
 
     ////ROB JS END////
 
