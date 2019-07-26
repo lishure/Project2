@@ -116,7 +116,7 @@
             let income = item.income
             let cashdown = item.cashdown
             let budget = item.budget
-            let comment = item.comment
+            let commentsection = item.commentsection
 
             var setSelectedIndex = (selector, value) => {
               for (let i = 0; i < selector.options.length; i++) {
@@ -131,7 +131,7 @@
             setSelectedIndex(document.querySelector('#creditScore'), creditGrade)
             document.querySelector('#incomeLevel').value = income
             document.querySelector('#downPayment').value = cashdown
-            document.querySelector('#commentsecion').value = comment
+            document.querySelector('#commentsecion').value = commentsection
           })
         })
 
@@ -160,7 +160,7 @@
           creditgrade: creditRating,
           income: monthlyIncome,
           cashdown: moneyDown,
-          comment: commentInput,
+          commentsection: commentInput,
           budget
         }
 
@@ -177,7 +177,7 @@
           // console.log('Your Credit Rating: ' + userData.credit)
           // console.log('Your Monthly Income: $' + userData.income)
           // console.log('Down Payment Amount: $ ' + userData.cash)
-          console.log('comments: '+ userData.comment)
+          console.log('comments: '+ userData.commentsection)
 
           // Console log monthly max payment and total max budget
           console.log('Your max monthly payment is: $' + monthlyPayment + '.')
