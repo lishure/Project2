@@ -189,7 +189,7 @@
           console.log("this is user data", userData)
           // Update entry on MySQL DB
           fetch(`/api/buyers/${buyerID}`, {
-            method: 'PUT',
+            method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
           }).then(response => {
@@ -211,7 +211,7 @@
       overlay.addEventListener('click', event => {
         event.preventDefault()
         form.reset()
-        setTimeout(window.location.href = '/buyers', 500)
+        setTimeout(window.location.href = '/buyers', 1000)
       })
 
     </script>
