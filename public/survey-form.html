@@ -290,6 +290,7 @@
     // Overlay
     const overlay = document.querySelector('.overlay')
     const form = document.querySelector('form')
+    const calendlyParent = document.body
 
     // On click function to capture user data
     document.querySelector('#submit-button').addEventListener('click', event => {
@@ -362,6 +363,16 @@
       // hides the results modal so the user can interact with the calendly scheduler
       document.getElementById('results').classList.add('dn')
     })
+
+    // when the user closes the calendly interface, the form resets
+    function formResetOnCalendlyClose(event) {
+        if (event.target.classList.contains('calendly-close-overlay') || event.target.classList.contains('calendly-popup-close')) {
+            form.reset()
+        }
+    }
+
+    // listens for a click on the calendly overlay so the fields will reset
+    calendlyParent.addEventListener('click', formResetOnCalendlyClose, false) 
 
     // Get current rates
     fetch('/api/get-interest-rate')
