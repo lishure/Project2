@@ -39,6 +39,12 @@ class Chat {
       .where(where)
       .del()
   }
+
+  destroy (where) {
+    return knex(this.table)
+     .where(where)
+     .del()
+  }
 }
 
 module.exports = new Chat()
