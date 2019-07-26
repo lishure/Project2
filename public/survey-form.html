@@ -65,18 +65,20 @@
     } */
 
 
-    /* ROB CSS */
+  /* ROB CSS */
     .chat-button {
-  background-color: #555;
+  background-color: #00449e;
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   opacity: 0.8;
   position: fixed;
-  bottom: 23px;
+  bottom: 10px;
   right: 28px;
-  width: 280px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%
 }
 
 /* The popup chat - hidden by default */
@@ -87,6 +89,7 @@
   right: 15px;
   border: 3px solid #f1f1f1;
   z-index: 9;
+  border-radius: 4px
 }
 
 /* Add styles to the form container */
@@ -105,21 +108,23 @@
 #email-text {
   width: 100%;
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin: 5px 0 10px 0;
   border: none;
   background: #f1f1f1;
   resize: none;
   min-height: 10px;
+  border-radius: 4px
 }
 
 #msg-text {
   width: 100%;
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin: 5px 0 10px 0;
   border: none;
   background: #f1f1f1;
   resize: none;
-  min-height: 150px;
+  min-height: 10px;
+  border-radius: 4px
 }
 /* Set a style for the submit/send button */
 .form-container .btn {
@@ -131,11 +136,19 @@
   width: 100%;
   margin-bottom:10px;
   opacity: 0.8;
+  border-radius: 4px
 }
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: red;
+  background-color: red; 
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: white;
+  padding: 0px;
+  border-radius: 2px;
+  font-size: 13px;
 }
 
 /* Add some hover effects to buttons */
@@ -148,6 +161,9 @@
 
   </style>
 </head>
+<!-- <p class="w-90 ba br2 pa3 ma2 green bg-washed-green" role="alert" style="visibility: hidden">
+  <strong>Well done!</strong> You successfully read this important alert message.
+</p> -->
 
 <body class="sans-serif">
   <div class="ma4">
@@ -195,27 +211,6 @@
       <a href="/api/chat" class="blue dim link">Chat (API)</a>
     </div>
 
-    <!--ROB HTML-->
-
-    <button class="chat-button" onclick="openForm()">Chat!</button>
-
-    <div class="chat-popup" id="chatForm">
-      <form class="form-container">
-        <h1>Chat</h1>
-
-        <label for="email"><b>Email:</b></label>
-        <textarea id="email-text" placeholder="Type email.." required></textarea>
-
-        <label for="msg"><b>Message:</b></label>
-        <textarea id="msg-text" placeholder="Type message.." required></textarea>
-
-        <button type="button" class="btn" onclick="sendInfo()">Send</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-      </form>
-    </div>
-
-    <!--ROB HTML END-->
-
     <!-- Modal -->
     <div id="results" class="bg-white absolute pa4 z-5 dn"> 
       <h2>Congratulations <span id="first-name"></span>!</h2>
@@ -231,6 +226,23 @@
       <p class="f7 lh-copy">*These results are an estimation based on your input and gives you an idea of what you can afford and in no
         way a guarantee of what you can truly afford.
         If you would like to move forward, the next step would be to speak with a Lender for a pre-approval.
+      <br>
+
+      <!--ROB HTML-->
+
+      <!-- <button class="chat-button" onclick="openForm()">?</button>
+
+      <div class="chat-popup" id="chatForm">
+        <form class="form-container">
+          <button type="button" class="btn cancel" onclick="closeForm()">X</button>
+          <span id=title >Send us feedback</span>
+          <textarea id="email-text" placeholder="Type email.." name="email" required></textarea>
+          <textarea id="msg-text" placeholder="Type message.." name="msg" required></textarea>
+          <button type="btn" class="btn" onclick="sendInfo()">Send</button>
+        </form>
+      </div> -->
+  
+      <!--ROB HTML END-->
     </div>
     <!-- End of Modal -->
   </div>
@@ -247,6 +259,7 @@
       document.getElementById('chatForm').style.display="none"
     }
 
+    // function grabs info from both textarea
     function sendInfo () {
       let email = document.getElementById('email-text').value.trim()
       let msg = document.getElementById('msg-text').value.trim()
@@ -257,7 +270,7 @@
         email: email,
         msg: msg
       }
-              // Post to MySQL DB
+        // Post to chat table
         fetch('/api/chat/', {
           method: 'post',
           data: chatData,
@@ -266,6 +279,10 @@
         }).then(res => {
           console.log(res)
         })
+
+        // Resets textarea
+        document.getElementById('email-text').value = ''
+        document.getElementById('msg-text').value = ''
     }
 
     ////ROB JS END////
