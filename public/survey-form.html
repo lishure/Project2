@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
 
   <style>
     #results {
@@ -202,6 +204,10 @@
       <div class="b tc f7">
         Interest Rate % based on 30-Year Fixed: <a href="https://www.navyfederal.org/assets/rates/printMortRatesAll.php" target="_blank" class="blue link">Source</a>
       </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Comments</label>
+        <textarea class="form-control " id="commentsection" rows="3"></textarea>
+      </div>
       <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100" id="submit-button" type="button">Submit</button>
     </form>
 
@@ -300,6 +306,7 @@
       const monthlyIncome = document.querySelector('#incomeLevel').value.trim()
       const moneyDown = document.querySelector('#downPayment').value.trim()
       const todaysRate = document.querySelector('#interestRate').value.trim()
+      const commentInput = document.querySelector('#commentsection').value.trim()
 
       // Variables to store mortgage calculator equation
       const decimalRate = todaysRate / 100
@@ -315,6 +322,7 @@
         creditgrade: creditRating,
         income: monthlyIncome,
         cashdown: moneyDown,
+        commentsection: commentInput,
         budget
       }
 
