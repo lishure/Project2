@@ -116,6 +116,7 @@
             let income = item.income
             let cashdown = item.cashdown
             let budget = item.budget
+            let commentsection = item.commentsection
 
             var setSelectedIndex = (selector, value) => {
               for (let i = 0; i < selector.options.length; i++) {
@@ -130,6 +131,7 @@
             setSelectedIndex(document.querySelector('#creditScore'), creditGrade)
             document.querySelector('#incomeLevel').value = income
             document.querySelector('#downPayment').value = cashdown
+            document.querySelector('#commentsection').value = commentsection
           })
         })
 
@@ -142,6 +144,7 @@
         const monthlyIncome = document.querySelector('#incomeLevel').value.trim()
         const moneyDown = document.querySelector('#downPayment').value.trim()
         const todaysRate = document.querySelector('#interestRate').value.trim()
+        const commentInput = document.querySelector('#commentsection').value.trim()
 
         // Variables to store mortgage calculator equation
         const decimalRate = todaysRate / 100
@@ -157,6 +160,7 @@
           creditgrade: creditRating,
           income: monthlyIncome,
           cashdown: moneyDown,
+          commentsection: commentInput,
           budget
         }
 

@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
   // Your port; if not 3306
   port: 3306,
   // Your sql username
-  user: 'root',
+  user: 'lishure',
   // Your password
   password: '',
   database: 'buyersdb'
