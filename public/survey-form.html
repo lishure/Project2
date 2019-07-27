@@ -204,10 +204,11 @@
       <div class="b tc f7">
         Interest Rate % based on 30-Year Fixed: <a href="https://www.navyfederal.org/assets/rates/printMortRatesAll.php" target="_blank" class="blue link">Source</a>
       </div>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">Comments</label>
-        <textarea class="form-control " id="commentsection" rows="3"></textarea>
-      </div>
+      <fieldset class="bw0 ph0 pv2 mb2 mh0 w-100">
+        <legend class="b bw0 f6 pa0 ma0">Comments</legend>
+        <input id="commentSection" name="downPayment" class="input-reset ba b--black-20 br2 ph2 pv1 w-100"
+          required>
+      </fieldset>
       <button class="f6 link dim br-pill ph3 pv2 mv4 dib white bg-dark-blue input-reset bw0 pointer w-100" id="submit-button" type="button">Submit</button>
     </form>
 
@@ -306,7 +307,7 @@
       const monthlyIncome = document.querySelector('#incomeLevel').value.trim()
       const moneyDown = document.querySelector('#downPayment').value.trim()
       const todaysRate = document.querySelector('#interestRate').value.trim()
-      const commentInput = document.querySelector('#commentsection').value.trim()
+      const commentInput = document.querySelector('#commentSection').value.trim()
 
       // Variables to store mortgage calculator equation
       const decimalRate = todaysRate / 100
@@ -395,7 +396,7 @@
     overlay.addEventListener('click', event => {
       event.preventDefault()
       form.reset()
-      setTimeout(window.location.reload(), 500)
+      setTimeout(window.location.reload(), 1000)
     })
 
   </script>
