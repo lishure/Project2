@@ -78,7 +78,7 @@
           let cashdown = buyer[i].cashdown
           let budget = buyer[i].budget
           let creditGrade = buyer[i].creditgrade
-          
+          let commentsection = buyer[i].commentsection
 
           let template =
             `
@@ -89,6 +89,7 @@
               <td class="pa3 tc">$${formatMoney(cashdown)}</td>
               <td class="pa3 tc">$${formatMoney(budget)}</td>
               <td class="pa3 tc">${creditGrade}</td>
+              <td class="pa3 tc">${commentsection}</td>
               
               <td class="pa3 tc">
                 <a href="/buyers/${id}" class="btn-edit f6 link dim br-pill ph3 pv1 dib white bg-blue mr2">Edit</a>
