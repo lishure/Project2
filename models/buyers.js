@@ -76,16 +76,16 @@ class Buyers {
   }
 
   // Get interest rate from a source
-  getInterestRate () {
-    return axios.get('https://www.navyfederal.org/assets/rates/printMortRatesAll.php')
-      .then(response => {
-        const rootDoc = htmlParser.parse(response.data)
-        let selector = rootDoc.querySelector('.newRatesTable')
-        selector = selector.childNodes[3].querySelector('.mort_interest')
-        selector = parseFloat(selector.text)
-        return selector
-      })
-  }
+  // getInterestRate () {
+  //   return axios.get('https://www.navyfederal.org/assets/rates/printMortRatesAll.php')
+  //     .then(response => {
+  //       const rootDoc = htmlParser.parse(response.data)
+  //       let selector = rootDoc.querySelector('.newRatesTable')
+  //       selector = selector.childNodes[3].querySelector('.mort_interest')
+  //       selector = parseFloat(selector.text)
+  //       return selector
+  //     })
+  // }
 }
 
 module.exports = new Buyers()
