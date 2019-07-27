@@ -5,7 +5,7 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('buyers').insert([
-        { clientname: 'Joey', income: 5000, cashdown: 50000, budget: 400000, creditgrade: 'Good', commentsection: 'none0'},
+        { clientname: 'Joey', income: 5000, cashdown: 50000, budget: 400000, creditgrade: 'Good', commentsection: 'none'},
         { clientname: 'Rachael', income: 6000, cashdown: 80000, budget: 600000, creditgrade: 'Very Good', commentsection: 'none'},
         { clientname: 'Ross', income: 7000, cashdown: 100000, budget: 800000, creditgrade: 'Exceptional', commentsection: 'none'},
         { clientname: 'Lucky', income: 5500, cashdown: 50000, budget: 400000, creditgrade: 'Exceptional', commentsection: 'none'},

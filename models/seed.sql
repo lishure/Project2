@@ -1,6 +1,6 @@
 USE buyersdb;
 
-INSERT INTO buyers (clientname, income, cashdown, budget, creditgrade)
+INSERT INTO buyers (clientname, income, cashdown, budget, creditgrade, commentsection)
 VALUES ("Joey", 5000, 50000, 400000, "Good", "None");
 
 INSERT INTO buyers (clientname, income, cashdown, budget, creditgrade, commentsection)
