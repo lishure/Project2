@@ -226,7 +226,7 @@
         alt="" class="w-100">
       <br>
       <span class="ph3 mb4" id='appointment'>
-        <a class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib dark-blue" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/krisjecen/mortgage-consultation'});return false;">Let's talk. Make an appointment.</a>
+        <a class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib dark-blue" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mortgagecalc/consultation'});return false;">Let's talk. Make an appointment.</a>
       </span>
       <p class="b blue">Your Max Budget is : $<span id="max-budget">0</span>*</p>
       <p class="b green">Your Max Monthly payment is : $<span id="max-monthly">0</span>*</p>
@@ -377,6 +377,7 @@
     function formResetOnCalendlyClose(event) {
         if (event.target.classList.contains('calendly-close-overlay') || event.target.classList.contains('calendly-popup-close')) {
             form.reset()
+            setTimeout(window.location.reload(), 1000)
         }
     }
 
