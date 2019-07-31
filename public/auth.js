@@ -32,7 +32,7 @@ module.exports = function (passport) {
       }
     })
   })
-
+  console.log('test')
   router.post('/login', passport.authenticate('local', {
     failureRedirect: '/login',
     successRedirect: '/all-entries.html'
