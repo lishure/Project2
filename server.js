@@ -7,8 +7,8 @@ var mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 mongoose.connect(
   process.env.MONGODB_URI ||
-  'mongodb://heroku_v9p9l22r:u816mb3il2qevb060rm36u0v20@ds057934.mlab.com:57934/heroku_v9p9l22r')
-mongoose.connect('mongodb://localhost:27017/login')
+  'mongodb://heroku_v9p9l22r:u816mb3il2qevb060rm36u0v20@ds057934.mlab.com:57934/heroku_v9p9l22r', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/login', { useNewUrlParser: true })
 var passport = require('passport')
 
 const express = require('express')
