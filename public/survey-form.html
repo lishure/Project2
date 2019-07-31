@@ -354,7 +354,7 @@
         document.querySelector('#max-monthly').innerText = monthlyPayment.toFixed(2)
 
         // Post to MySQL DB
-        fetch('/api/buyers', {
+        fetch('/api/buyers/', {
           method: 'post',
           data: userData,
           headers: { 'Content-Type': 'application/json' },
