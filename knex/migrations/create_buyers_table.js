@@ -9,6 +9,7 @@ exports.up = function (knex, Promise) {
     table.integer('cashdown')
     table.integer('budget')
     table.string('creditgrade').notNullable()
+    table.string('timeline').notNullable()
     table.string('commentsection').notNullable()
     table.timestamp('created_at').defaultTo(knex.fn.now())
   })
