@@ -31,6 +31,7 @@
           <th class="fw6 tl pa3 bg-white tc">Down Payment</th>
           <th class="fw6 tl pa3 bg-white tc">Budget</th>
           <th class="fw6 tl pa3 bg-white tc">Credit Grade</th>
+          <th class="fw6 tl pa3 bg-white tc">Timeframe</th>
           <th class="fw6 tl pa3 bg-white tc">Comments</th>
           <th class="fw6 tl pa3 bg-white tc">Action</th>
         </tr>
@@ -81,6 +82,7 @@
           let cashdown = buyer[i].cashdown
           let budget = buyer[i].budget
           let creditGrade = buyer[i].creditgrade
+          let bTimeline = buyer[i].timeline
           let commentSection = buyer[i].commentsection
 
           let template =
@@ -92,6 +94,7 @@
               <td class="pa3 tc">$${formatMoney(cashdown)}</td>
               <td class="pa3 tc">$${formatMoney(budget)}</td>
               <td class="pa3 tc">${creditGrade}</td>
+              <td class="pa3 tc">${bTimeline}</td>
               <td class="pa3 tc">${commentSection}</td>
               
               <td class="pa3 tc">

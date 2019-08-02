@@ -51,10 +51,10 @@ module.exports = function (app) {
   })
 
   // Get current interest rate
-  app.get('/api/get-interest-rate', (req, res) => {
-    Buyers.getInterestRate(req.body)
-      .then(buyers => {
-        res.json(buyers)
-      })
-  })
+  // app.get('/api/get-interest-rate', (req, res) => {
+  //   Buyers.getInterestRate(req.body)
+  //     .then(buyers => {
+  //       res.json(buyers)
+  //     })
+  // })
 }
