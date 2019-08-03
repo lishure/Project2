@@ -3,7 +3,18 @@
 var mysql = require('mysql')
 // add inquirer
 var inquirer = require('inquirer')
-// create the mysql connection configuration
+// // create the mysql connection configuration
+// var connection = mysql.createConnection({
+//   host: process.env.HOST,
+//   // Your port; if not 3306
+//   port: 3306,
+//   // Your sql username
+//   user: process.env.USER,
+//   // Your password
+//   password: process.env.PASSWORD,
+//   database: process.env.DATABASE
+// })
+/// /////////////////code below connects to local database///////////////////////
 var connection = mysql.createConnection({
   host: 'localhost',
   // Your port; if not 3306
@@ -14,6 +25,7 @@ var connection = mysql.createConnection({
   password: '',
   database: 'buyersdb'
 })
+/// //////////////////End of code that connects to local database//////////////////
 // connect to buyersdb database
 connection.connect(function (err) {
   if (err) throw err
