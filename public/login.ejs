@@ -20,8 +20,10 @@
 </head>
 
 <body>
+    <div id='root'></div>
     <div class="login-form col-md-3" id="login-form">
         <div class="container">
+                <h2 style="color:rgb(40, 22, 196)">Login</h2>
             <form action="/auth/login" class="col-md-12" method="post">
                 <div class="form-group">
                     <label for="">Username :</label>
@@ -55,7 +57,23 @@
             opacity: .92;
             float: left;
         }
+        #root{
+        width: 50px;
+      height: auto;
+      margin-top: 1%;
+      margin-left: 1%;
+        }
     </style>
+
+    <!-- Add React -->
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/react@16/umd/react.production.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.js"></script>
+
+<script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <!-- Load our React component. -->
+  <script src="logo.jsx"></script>
 </body>
 
 </html>

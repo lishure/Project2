@@ -20,11 +20,12 @@
 </head>
 
 <body>
+    <div id="root"></div>
     <div class="container">
         <div class="login-form col-md-3" id="login-form">
             <form action="/auth/signup" class="col-md-12" method="post">
                 <div class="form-group">
-                    <h2 style="color:blueviolet">Register</h2>
+                        <h2 style="color:rgb(40, 22, 196)">Login</h2>
                     <label for="">Username :</label>
                     <input autofocus class="form-control" type="text" name="username">
                 </div>
@@ -57,8 +58,24 @@
         opacity: .92;
         float: left;
     }
+    #root{
+        width: 50px;
+      height: auto;
+      margin-top: 1%;
+      margin-left: 1%;
+        }
 
 </style>
+
+<!-- Add React -->
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/react@16/umd/react.production.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.js"></script>
+
+<script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <!-- Load our React component. -->
+  <script src="logo.jsx"></script>
 </body>
 
 </html>
