@@ -41,6 +41,7 @@
       background-size: cover;
     }
 
+    /* appointment buttons styling */
     #appointment {
       float: right;
       margin-top: 2%;
@@ -49,7 +50,13 @@
       float: right;
       margin-top: 2%;
     }
-    /* appointment button styling */
+    .calbutton, .calbutton:hover, .calbutton:active, .calbutton:visited {
+      text-decoration: none;
+      color: white;
+    }
+    .calbuttonmodal, .calbuttonmodal:hover, .calbuttonmodal:active, .calbuttonmodal:visited {
+      text-decoration: none;
+    }
     .mb4 {
     margin-bottom: 1rem;
     }
@@ -59,30 +66,6 @@
       position:absolute;
       margin: 1%;
     }
-    
-    /* .ba {
-    border-style: solid;
-    border-width: 1px;
-    }
-
-    .bw2 {
-    border-width: .25rem;
-    }
-
-    .ph3 {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    }
-
-    .dark-blue {
-    color: #00449e;
-    }
-
-    .f6 {
-    font-size: .875rem;
-    } */
-
-
   </style>
 </head>
 
@@ -153,7 +136,7 @@
     </form>
 
     <span class="ph3 mb4 dn" id='appointmentMainPage'>
-      <a class="f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-dark-blue" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mortgagecalc/consultation'});return false;">Let's talk. Make an appointment.</a>
+      <a class="f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-dark-blue calbutton" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mortgagecalc/consultation'});return false;">Let's talk. Make an appointment.</a>
     </span>
 
     <!-- Modal -->
@@ -164,7 +147,7 @@
         alt="" class="w-100">
       <br>
       <span class="ph3 mb4" id='appointment'>
-        <a class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib dark-blue" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mortgagecalc/consultation'});return false;">Let's talk. Make an appointment.</a>
+        <a class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib dark-blue calbuttonmodal" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mortgagecalc/consultation'});return false;">Let's talk. Make an appointment.</a>
       </span>
       <p class="b blue">Your Max Budget is : $<span id="max-budget">0</span>*</p>
       <p class="b green">Your Max Monthly payment is : $<span id="max-monthly">0</span>*</p>
